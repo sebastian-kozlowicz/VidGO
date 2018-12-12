@@ -1,0 +1,20 @@
+﻿@model List<Video_Rental_Shop.Models.MembershipType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Membership Types</h2>
+
+@foreach (var membershipType in Model)
+{
+    <h4>@membershipType.Name</h4>
+    <ul>
+        @foreach (var customer in membershipType.Customers)
+        {
+
+            <li>@customer.Name @customer.Surname</li>
+        }
+    </ul>
+}

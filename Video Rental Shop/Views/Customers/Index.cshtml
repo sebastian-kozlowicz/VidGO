@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Video_Rental_Shop.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Customers</h2>
+
+<p>
+    @Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th colspan="3" class="text-center" style="width:5%">Options</th>
+                <th class="text-center" style="width:5%">#</th>
+                <th>Customer</th>
+                <th>Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+            <tr>
+                <td style="width:5%">@Html.ActionLink("Details", "Details", "Customers", new { id = customer.Id }, new { @class = "btn btn-info btn-xs" })</td>
+                <td style="width:5%">@Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.Id }, new { @class = "btn btn-warning btn-xs" })</td>
+                <td style="width:5%">@Html.ActionLink("Delete", "Delete", "Customers", new { id = customer.Id }, new { @class = "btn btn-danger btn-xs" })</td>
+                <td class="text-center">@customer.Id</td>
+                <td>@customer.Name @customer.Surname</td>
+                <td>@customer.MembershipType.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table> 
+}
