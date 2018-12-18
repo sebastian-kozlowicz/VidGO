@@ -14,7 +14,7 @@ namespace Video_Rental_Shop.ViewModels
         {
             get
             {
-                if (Customer != null)
+                if (Customer!= null && Customer.Id != 0)
                     return "Edit Customer";
 
                 return "New Customer";

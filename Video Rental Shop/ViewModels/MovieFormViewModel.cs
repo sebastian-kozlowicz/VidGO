@@ -14,7 +14,7 @@ namespace Video_Rental_Shop.ViewModels
         {
             get
             {
-                if (Movie != null)
+                if (Movie != null && Movie.Id != 0)
                     return "Edit Movie";
 
                 return "New Movie";

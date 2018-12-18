@@ -123,3 +123,11 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.PopulateMembershipTypesTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGenres.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.PopulateGenresTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\System.ComponentModel.Annotations.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\System.ValueTuple.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\System.ValueTuple.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.Mvc.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.ValidatorAttribute.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.Mvc.xml
