@@ -22,21 +22,21 @@ namespace Video_Rental_Shop.Models
                 .EmailAddress().WithMessage("The e-mail field does not contain a proper address");
 
             RuleFor(c => c.Birthdate)
-              .NotNull().WithMessage("The Birthday field is required")
-               .LessThan(c => DateTime.Now).WithMessage($"Birthdate must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}"); ;
+                .NotNull().WithMessage("The Birthday field is required")
+                .LessThan(c => DateTime.Now).WithMessage($"Birthdate must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}");
 
-            RuleFor(c => c).Cascade(CascadeMode.StopOnFirstFailure).
-            Custom((c, context) =>
-            {
-                if (c.MembershipTypeId != 1)
+            RuleFor(c => c).Cascade(CascadeMode.StopOnFirstFailure)
+                .Custom((c, context) =>
                 {
-                    DateTime Current = DateTime.Today;
-                    var age = Current.Year - Convert.ToDateTime(c.Birthdate).Year;
+                    if (c.MembershipTypeId != 1)
+                    {
+                        DateTime Current = DateTime.Today;
+                        var age = Current.Year - Convert.ToDateTime(c.Birthdate).Year;
 
-                    if (age < 18)
-                        context.AddFailure(new ValidationFailure("Birthdate", "Customer should be at least 18 years old to go on a membership"));
-                }
-            });
+                        if (age < 18)
+                            context.AddFailure(new ValidationFailure("Birthdate", "Customer should be at least 18 years old to go on a membership"));
+                    }
+                });
         }
     }
 }
