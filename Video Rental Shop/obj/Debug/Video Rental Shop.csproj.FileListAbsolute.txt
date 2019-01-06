@@ -131,3 +131,4 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.ValidatorAttribute.dll
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.xml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\bin\FluentValidation.Mvc.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.MakeNumberInStockPropertyNullable.resources

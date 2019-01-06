@@ -42,7 +42,6 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult New()
         {
-
             var viewModel = new CustomerFormViewModel
             {
                 Customer = new Customer(),
@@ -85,6 +84,7 @@ namespace Video_Rental_Shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         { 
             if (!ModelState.IsValid)

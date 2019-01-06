@@ -21,14 +21,14 @@ namespace Video_Rental_Shop.Models
                 .NotNull().WithMessage("The e-mail field is required")
                 .EmailAddress().WithMessage("The e-mail field does not contain a proper address");
 
-            RuleFor(c => c.Birthdate)
+            RuleFor(c => c.Birthdate).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("The Birthday field is required")
                 .LessThan(c => DateTime.Now).WithMessage($"Birthdate must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}");
 
             RuleFor(c => c).Cascade(CascadeMode.StopOnFirstFailure)
                 .Custom((c, context) =>
                 {
-                    if (c.MembershipTypeId != 1)
+                    if (c.MembershipTypeId != MembershipType.PayAsYouGo)
                     {
                         DateTime Current = DateTime.Today;
                         var age = Current.Year - Convert.ToDateTime(c.Birthdate).Year;

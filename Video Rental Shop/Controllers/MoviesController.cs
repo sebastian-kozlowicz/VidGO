@@ -46,6 +46,7 @@ namespace Video_Rental_Shop.Controllers
 
             var viewModel = new MovieFormViewModel
             {
+                Movie = new Movie(),
                 Genres = genres
             };
 
@@ -61,8 +62,9 @@ namespace Video_Rental_Shop.Controllers
 
             var genres = _context.Genres.ToList();
 
-            var viewModel = new MovieFormViewModel(movie)
+            var viewModel = new MovieFormViewModel()
             {
+                Movie = movie,
                 Genres = genres
             };
 
@@ -84,12 +86,14 @@ namespace Video_Rental_Shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel(movie)
+                var viewModel = new MovieFormViewModel()
                 {
+                    Movie = movie,
                     Genres = _context.Genres.ToList()
                 };
 
