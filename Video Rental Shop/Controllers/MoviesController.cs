@@ -57,6 +57,7 @@ namespace Video_Rental_Shop.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -75,7 +76,7 @@ namespace Video_Rental_Shop.Controllers
             return View("MovieForm", viewModel);
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Delete(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -91,6 +92,7 @@ namespace Video_Rental_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -105,7 +107,10 @@ namespace Video_Rental_Shop.Controllers
             }
 
             if (movie.Id == 0)
+            {
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
+            }
             else
             {
                 var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);

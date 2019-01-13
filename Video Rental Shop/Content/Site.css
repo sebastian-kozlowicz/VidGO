@@ -26,3 +26,7 @@ textarea {
 .input-validation-error {
     border: 2px solid #a94442;
 }
+
+#buttons {
+    margin-bottom:20px;
+}

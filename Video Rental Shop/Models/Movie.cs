@@ -13,7 +13,9 @@ namespace Video_Rental_Shop.Models
         public string Name { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public int? NumberInStock { get; set; }
+        public int? NumberAvailable { get; set; }
         public Genre Genre { get; set; }
         public byte GenreId { get; set; }
+
     }
 }

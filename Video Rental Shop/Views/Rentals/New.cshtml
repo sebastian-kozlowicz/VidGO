@@ -1,0 +1,92 @@
+﻿@model Video_Rental_Shop.ViewModels.NewRentalViewModel
+
+@{
+    ViewBag.Title = "New Rental";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Rental for @Model.Customer.Name @Model.Customer.Surname</h2>
+
+<div id="buttons">
+    <button id="js-moviesButton" class="btn btn-primary">Show Movies</button>
+    <button id="js-gamesButton" class="btn btn-primary">Show Video Games</button>
+</div>
+
+<form>
+    <table id="movies" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" style="width:5%">Options</th>
+                <th class="text-center" style="width:5%">#</th>
+                <th>Movie</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Movies.Count(); i++)
+            {
+                if (Model.Movies.ElementAt(i).NumberAvailable > 0)
+                {
+                    <tr>
+                        <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-info btn-xs" })</td>
+                        <td class="text-center">@(i + 1)</td>
+                        <td>@Model.Movies.ElementAt(i).Name</td>
+                        <td>@Model.Movies.ElementAt(i).Genre.Name</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <table id="games" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" style="width:5%">Options</th>
+                <th class="text-center" style="width:5%">#</th>
+                <th>Movie</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Games.Count(); i++)
+            {
+                if (Model.Games.ElementAt(i).NumberAvailable > 0)
+                {
+                    <tr>
+                        <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-info btn-xs" })</td>
+                        <td class="text-center">@(i + 1)</td>
+                        <td>@Model.Games.ElementAt(i).Name</td>
+                        <td>@Model.Games.ElementAt(i).Genre.Name</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $("#movies").DataTable();
+            $('#games').dataTable();
+            $("#games").hide();
+            $("#games_wrapper").hide()
+            
+            $('#js-moviesButton').click(function () {
+                $("#movies").show()
+                $("#games").hide()
+                $("#movies_wrapper").show()
+                $("#games_wrapper").hide()
+            });
+
+            $('#js-gamesButton').click(function () {
+                $("#games").show()
+                $("#movies").hide()
+                $("#games_wrapper").show()
+                $("#movies_wrapper").hide()
+            });
+        });
+    </script>
+}

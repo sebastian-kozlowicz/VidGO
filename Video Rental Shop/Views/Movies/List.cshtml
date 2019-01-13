@@ -59,7 +59,7 @@ else
                         $.ajax({
                             url: "Movies/Delete/" + button.attr("data-movie-id"),
                             success: function () {
-                                table.row(button.parents("tr")).remove().draw();
+                                location.reload();
                             }
                         });
                     }

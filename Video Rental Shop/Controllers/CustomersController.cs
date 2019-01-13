@@ -23,6 +23,15 @@ namespace Video_Rental_Shop.Controllers
             _context.Dispose();
         }
 
+        public ActionResult GetCustomer()
+        {
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+
+                customers = customers.Where(c => c.Id == 1).ToList();
+
+            return Json(customers, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Index()
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
@@ -86,7 +95,7 @@ namespace Video_Rental_Shop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
-        { 
+        {
             if (!ModelState.IsValid)
             {
                 var viewModel = new CustomerFormViewModel

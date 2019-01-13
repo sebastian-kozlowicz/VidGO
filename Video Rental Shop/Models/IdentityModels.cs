@@ -24,6 +24,8 @@ namespace Video_Rental_Shop.Models
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         public ApplicationDbContext()
             : base("name=DefaultConnection", throwIfV1Schema: false)
