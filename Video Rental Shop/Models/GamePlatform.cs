@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Video_Rental_Shop.Models
 {
-    public class Genre
+    public class GamePlatform
     {
         public byte Id { get; set; }
         public string Name { get; set; }
-        public IList<Movie> Movies { get; set; }
+        public IList<Game> Games { get; set; }
     }
 }

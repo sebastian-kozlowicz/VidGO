@@ -1,4 +1,4 @@
-﻿@model Video_Rental_Shop.ViewModels.NewRentalViewModel
+﻿@model Video_Rental_Shop.ViewModels.RentalViewModel
 
 @{
     ViewBag.Title = "New Rental";
@@ -15,23 +15,34 @@
 <form>
     <table id="movies" class="table table-bordered table-hover">
         <thead>
+            <tr style="display:none">
+                <th></th>
+            </tr>
             <tr>
-                <th class="text-center" style="width:5%">Options</th>
+                <th colspan="2" class="text-center" style="width:5%">Options</th>
                 <th class="text-center" style="width:5%">#</th>
                 <th>Movie</th>
                 <th>Genre</th>
+                <th>Number available</th>
             </tr>
         </thead>
         <tbody>
+
+            @{
+                int counter = 1;
+            }
+
             @for (int i = 0; i < Model.Movies.Count(); i++)
             {
                 if (Model.Movies.ElementAt(i).NumberAvailable > 0)
                 {
                     <tr>
-                        <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-info btn-xs" })</td>
-                        <td class="text-center">@(i + 1)</td>
+                        <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-success btn-xs" })</td>
+                        <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                        <td class="text-center">@(counter++)</td>
                         <td>@Model.Movies.ElementAt(i).Name</td>
-                        <td>@Model.Movies.ElementAt(i).Genre.Name</td>
+                        <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
+                        <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
                     </tr>
                 }
             }
@@ -40,23 +51,33 @@
 
     <table id="games" class="table table-bordered table-hover">
         <thead>
+            <tr style="display:none">
+                <th></th>
+            </tr>
             <tr>
-                <th class="text-center" style="width:5%">Options</th>
+                <th colspan="2" class="text-center" style="width:5%">Options</th>
                 <th class="text-center" style="width:5%">#</th>
                 <th>Movie</th>
                 <th>Genre</th>
+                <th>Number available</th>
             </tr>
         </thead>
         <tbody>
+            @{
+                counter = 1;
+            }
+
             @for (int i = 0; i < Model.Games.Count(); i++)
             {
                 if (Model.Games.ElementAt(i).NumberAvailable > 0)
-                {
+                { 
                     <tr>
-                        <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-info btn-xs" })</td>
-                        <td class="text-center">@(i + 1)</td>
+                        <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-success btn-xs" })</td>
+                        <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                        <td class="text-center">@(counter++)</td>
                         <td>@Model.Games.ElementAt(i).Name</td>
-                        <td>@Model.Games.ElementAt(i).Genre.Name</td>
+                        <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
+                        <td>@Model.Games.ElementAt(i).NumberAvailable</td>
                     </tr>
                 }
             }
@@ -73,7 +94,7 @@
             $('#games').dataTable();
             $("#games").hide();
             $("#games_wrapper").hide()
-            
+
             $('#js-moviesButton').click(function () {
                 $("#movies").show()
                 $("#games").hide()

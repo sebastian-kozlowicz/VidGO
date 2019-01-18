@@ -23,9 +23,11 @@ namespace Video_Rental_Shop.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; }
+        public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Game> Games { get; set; }
+        public  DbSet<GamePlatform> GamePlatforms { get; set; }
 
         public ApplicationDbContext()
             : base("name=DefaultConnection", throwIfV1Schema: false)

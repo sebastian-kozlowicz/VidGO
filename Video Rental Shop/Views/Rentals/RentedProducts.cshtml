@@ -1,17 +1,76 @@
-﻿@model IEnumerable <Video_Rental_Shop.Models.Movie>
+﻿@model Video_Rental_Shop.ViewModels.RentalDetailsViewModel
 
 @{
     ViewBag.Title = "RentedProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Rented Products </h2>
+<h2>Rented products for @Model.Customer.Name @Model.Customer.Surname</h2>
 
-<ul>
-    @foreach (var movie in Model)
-    {
 
-        <li>Product name: @movie.Name</li>
+<table id="rentals" class="table table-bordered table-hover">
+    <thead>
+        <tr style="display:none">
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center" style="width:5%">Options</th>
+            <th class="text-center" style="width:5%">#</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Genre</th>
+            <th>Date rented</th>
+            <th>Date returned</th>
+        </tr>
+    </thead>
 
+    @{
+        int count = Model.RentalIds.Count();
     }
-</ul>
+    <tbody>
+        @for (int i = 0; i < count; i++)
+        {
+        <tr>
+            <td style="width:5%">@Html.ActionLink("Return", "Details", "Customers", new { id = Model.RentalIds.ElementAt(i) }, new { @class = "btn btn-success btn-xs" })</td>
+
+            @if (@Model.Movies.ElementAt(i) != null)
+            {
+                <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                <td class="text-center">@(i + 1)</td>
+                <td>@Model.Movies.ElementAt(i).Name</td>
+                <td>Movie</td>
+                <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
+            }
+
+            @if (@Model.Games.ElementAt(i) != null)
+            {
+                <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                <td class="text-center">@(i + 1)</td>
+                <td>@Model.Games.ElementAt(i).Name</td>
+                <td>Game</td>
+                <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
+            }
+
+            <td>@Model.DatesRented.ElementAt(i).ToShortDateString()</td>
+
+            @if (@Model.DateReturned.ElementAt(i) != null)
+            {
+                <td>@Model.DateReturned.ElementAt(i).Value.ToShortDateString()</td>
+            }
+            else
+            {
+                <td>-</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#rentals").DataTable();
+        });
+    </script>
+}

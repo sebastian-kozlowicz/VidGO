@@ -146,3 +146,9 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddRentals.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGames.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddDomainModelIdsToRentalTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.RenameGenresToMovieGenres.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGameGenres.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGamePlatforms.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGamePlatformColumnToGamesTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.PopulateGameGenresTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video Rental Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.PopulateGamePlatformsTable.resources

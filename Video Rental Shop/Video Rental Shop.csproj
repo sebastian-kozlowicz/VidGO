@@ -231,6 +231,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypesController.cs" />
@@ -279,12 +280,39 @@
     <Compile Include="Migrations\201901132130226_AddDomainModelIdsToRentalTable.Designer.cs">
       <DependentUpon>201901132130226_AddDomainModelIdsToRentalTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901171456253_RenameGenresToMovieGenres.cs" />
+    <Compile Include="Migrations\201901171456253_RenameGenresToMovieGenres.Designer.cs">
+      <DependentUpon>201901171456253_RenameGenresToMovieGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901171812431_AddGameGenres.cs" />
+    <Compile Include="Migrations\201901171812431_AddGameGenres.Designer.cs">
+      <DependentUpon>201901171812431_AddGameGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181040110_AddGamePlatforms.cs" />
+    <Compile Include="Migrations\201901181040110_AddGamePlatforms.Designer.cs">
+      <DependentUpon>201901181040110_AddGamePlatforms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181042330_AddGamePlatformColumnToGamesTable.cs" />
+    <Compile Include="Migrations\201901181042330_AddGamePlatformColumnToGamesTable.Designer.cs">
+      <DependentUpon>201901181042330_AddGamePlatformColumnToGamesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181044165_PopulateGameGenresTable.cs" />
+    <Compile Include="Migrations\201901181044165_PopulateGameGenresTable.Designer.cs">
+      <DependentUpon>201901181044165_PopulateGameGenresTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181052126_PopulateGamePlatformsTable.cs" />
+    <Compile Include="Migrations\201901181052126_PopulateGamePlatformsTable.Designer.cs">
+      <DependentUpon>201901181052126_PopulateGamePlatformsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerValidator.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\GameGenre.cs" />
+    <Compile Include="Models\GamePlatform.cs" />
+    <Compile Include="Models\GameValidation.cs" />
+    <Compile Include="Models\MovieGenre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -294,9 +322,11 @@
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\GameFormViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
-    <Compile Include="ViewModels\NewRentalViewModel.cs" />
+    <Compile Include="ViewModels\RentalDetailsViewModel.cs" />
+    <Compile Include="ViewModels\RentalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -657,6 +687,10 @@
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
     <Content Include="Views\Rentals\New.cshtml" />
     <Content Include="Views\Rentals\RentedProducts.cshtml" />
+    <Content Include="Views\Games\List.cshtml" />
+    <Content Include="Views\Games\GameForm.cshtml" />
+    <Content Include="Views\Games\ReadOnlyList.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -696,6 +730,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901132130226_AddDomainModelIdsToRentalTable.resx">
       <DependentUpon>201901132130226_AddDomainModelIdsToRentalTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901171456253_RenameGenresToMovieGenres.resx">
+      <DependentUpon>201901171456253_RenameGenresToMovieGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901171812431_AddGameGenres.resx">
+      <DependentUpon>201901171812431_AddGameGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181040110_AddGamePlatforms.resx">
+      <DependentUpon>201901181040110_AddGamePlatforms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181042330_AddGamePlatformColumnToGamesTable.resx">
+      <DependentUpon>201901181042330_AddGamePlatformColumnToGamesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181044165_PopulateGameGenresTable.resx">
+      <DependentUpon>201901181044165_PopulateGameGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181052126_PopulateGamePlatformsTable.resx">
+      <DependentUpon>201901181052126_PopulateGamePlatformsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

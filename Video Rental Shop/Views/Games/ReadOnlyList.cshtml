@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Video_Rental_Shop.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Movies</h2>
+
+@if (!Model.Any())
+{
+    <p>We don't have any games yet.</p>
+}
+else
+{
+    <table id="games" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" style="width:5%">Options</th>
+                <th class="text-center" style="width:5%">#</th>
+                <th>Game</th>
+                <th>Genre</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            <tr>
+                <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs " })</td>
+                <td class="text-center">@(i + 1)</td>
+                <td>@Model.ElementAt(i).Name</td>
+                <td>@Model.ElementAt(i).GameGenre.Name</td>
+                <td>@Model.ElementAt(i).GamePlatform.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#games").DataTable();
+        });
+    </script>
+}

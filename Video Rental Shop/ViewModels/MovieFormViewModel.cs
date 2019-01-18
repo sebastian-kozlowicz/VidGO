@@ -8,14 +8,14 @@ namespace Video_Rental_Shop.ViewModels
 {
     public class MovieFormViewModel
     {
-        public IEnumerable<Genre> Genres { get; set; }
-        public Movie Movie { get; set; }
+        public IEnumerable<MovieGenre> Genres { get; set; }
+        public Movie Game { get; set; }
 
         public string Title
         {
             get
             {
-                if (Movie != null && Movie.Id != 0)
+                if (Game != null && Game.Id != 0)
                     return "Edit Movie";
 
                 return "New Movie";

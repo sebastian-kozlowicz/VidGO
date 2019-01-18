@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Video_Rental_Shop.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Games</h2>
+
+<p>
+    @Html.ActionLink("Add Game", "New", "Games", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (!Model.Any())
+{
+    <p>We don't have any games yet.</p>
+}
+else
+{
+    <table id="games" class="table table-bordered table-hover">
+        <thead>
+            <tr style="display:none">
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th colspan="3" class="text-center" style="width:5%">Options</th>
+                <th class="text-center" style="width:5%">#</th>
+                <th>Game</th>
+                <th>Genre</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            <tr>
+                <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                <td style="width:5%">@Html.ActionLink("Edit", "Edit", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-warning btn-xs" })</td>
+                <td style="width:5%"><button data-game-id="@Model.ElementAt(i).Id" class="btn btn-danger btn-xs js-delete">Delete</button></td>
+                <td class="text-center">@(i + 1)</td>
+                <td>@Model.ElementAt(i).Name</td>
+                <td>@Model.ElementAt(i).GameGenre.Name</td>
+                <td>@Model.ElementAt(i).GamePlatform.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#games").DataTable();
+
+            $("#games").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this game?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "Games/Delete/" + button.attr("data-game-id"),
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

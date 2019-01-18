@@ -7,7 +7,7 @@
 <h2>Movies</h2>
 
 <p>
-    @Html.ActionLink("New Movie", "New", "Movies", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add Movie", "New", "Movies", null, new { @class = "btn btn-primary" })
 </p>
 
 @if (!Model.Any())
@@ -38,7 +38,7 @@ else
                     <td style="width:5%"><button data-movie-id="@Model.ElementAt(i).Id" class="btn btn-danger btn-xs js-delete">Delete</button></td>
                     <td class="text-center">@(i + 1)</td>
                     <td>@Model.ElementAt(i).Name</td>
-                    <td>@Model.ElementAt(i).Genre.Name</td>
+                    <td>@Model.ElementAt(i).MovieGenre.Name</td>
                 </tr>
             }
         </tbody>
