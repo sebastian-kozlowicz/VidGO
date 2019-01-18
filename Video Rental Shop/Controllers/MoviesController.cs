@@ -50,7 +50,7 @@ namespace Video_Rental_Shop.Controllers
 
             var viewModel = new MovieFormViewModel
             {
-                Game = new Movie(),
+                Movie = new Movie(),
                 Genres = genres
             };
 
@@ -69,7 +69,7 @@ namespace Video_Rental_Shop.Controllers
 
             var viewModel = new MovieFormViewModel()
             {
-                Game = movie,
+                Movie = movie,
                 Genres = genres
             };
 
@@ -99,7 +99,7 @@ namespace Video_Rental_Shop.Controllers
             {
                 var viewModel = new MovieFormViewModel()
                 {
-                    Game = movie,
+                    Movie = movie,
                     Genres = _context.MovieGenres.ToList()
                 };
 

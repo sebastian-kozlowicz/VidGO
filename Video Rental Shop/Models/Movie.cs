@@ -16,6 +16,6 @@ namespace Video_Rental_Shop.Models
         public int? NumberAvailable { get; set; }
         public MovieGenre MovieGenre { get; set; }
         public byte MovieGenreId { get; set; }
-
+        public IList<Rental> Rentals { get; set; }
     }
 }

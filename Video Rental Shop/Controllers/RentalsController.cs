@@ -27,16 +27,14 @@ namespace Video_Rental_Shop.Controllers
         public ActionResult New(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            var movies = _context.Movies.ToList();
-            var games = _context.Games.ToList();
-            var movieGenres = _context.MovieGenres.ToList();
+            var movies = _context.Movies.Include(g => g.MovieGenre).ToList();
+            var games = _context.Games.Include(g => g.GameGenre).Include(g => g.GamePlatform).ToList();
 
-            var viewModel = new RentalViewModel
+            var viewModel = new NewRentalViewModel
             {
                 Customer = customer,
                 Movies = movies,
-                Games = games,
-                MovieGenres = movieGenres
+                Games = games
             };
 
             return View(viewModel);
@@ -86,28 +84,56 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult RentedProducts(int id)
         {
+            RentalDetailsViewModel viewModel = null;
+
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            var movies = _context.Rentals.Include(m => m.Movie.MovieGenre).Where(c => c.CustomerId == id).Select(m => m.Movie).ToList();
-            var games = _context.Rentals.Where(c => c.CustomerId == id).Select(g => g.Game).ToList();
-            var genres = _context.MovieGenres.ToList();
-            var datesRented = _context.Rentals.Where(c => c.CustomerId == id).Select(d => d.DateRented).ToList();
-            var datesReturned = _context.Rentals.Where(c => c.CustomerId == id).Select(d => d.DateReturned).ToList();
+            var movies = _context.Rentals.Where(r => r.CustomerId == id).Select(m => m.Movie).Include(m => m.MovieGenre).ToList();
+            var games = _context.Rentals.Where(r => r.CustomerId == id).Select(g => g.Game).Include(g => g.GameGenre).ToList();
+            var datesRented = _context.Rentals.Where(r => r.CustomerId == id).Select(d => d.DateRented).ToList();
+            var datesReturned = _context.Rentals.Where(r => r.CustomerId == id).Select(d => d.DateReturned).ToList();
             var rentalIds = _context.Rentals.Where(r => r.Customer.Id == id).Select(r => r.Id).ToList();
 
-            var viewModel = new RentalDetailsViewModel
+            viewModel = new RentalDetailsViewModel
             {
                 RentalIds = rentalIds,
-                Customer = customer,
+                Customers = customer,
                 Movies = movies,
                 Games = games,
                 DatesRented = datesRented,
                 DateReturned = datesReturned
             };
 
-            List<RentalDetailsViewModel> list = new List<RentalDetailsViewModel>();
-            list.Add(viewModel);
-
             return View(viewModel);
+        }
+
+        [Route("Rentals/ReturnProduct/{rentalId}/{productType}")]
+        public ActionResult ReturnProduct(int rentalId, string productType)
+        {
+            var rental = _context.Rentals.SingleOrDefault(r => r.Id == rentalId);
+            Movie movie = null;
+            Game game = null;
+
+            if (productType == "Movie")
+            {
+                movie = _context.Movies.SingleOrDefault(m => m.Id == rental.MovieId);
+                if (movie == null)
+                    return HttpNotFound();
+
+                movie.NumberAvailable++;
+            }
+            else if (productType == "Game")
+            {
+                game = _context.Games.SingleOrDefault(m => m.Id == rental.GameId);
+                if (game == null)
+                    return HttpNotFound();
+
+                game.NumberAvailable++;
+            }
+
+            rental.DateReturned = DateTime.Now;
+            _context.SaveChanges();
+
+            return RedirectToAction("RentedProducts", "Rentals", new { id = rental.CustomerId });
         }
     }
 }

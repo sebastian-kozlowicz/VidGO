@@ -1,4 +1,4 @@
-﻿@model Video_Rental_Shop.ViewModels.RentalViewModel
+﻿@model Video_Rental_Shop.ViewModels.NewRentalViewModel
 
 @{
     ViewBag.Title = "New Rental";
@@ -23,7 +23,8 @@
                 <th class="text-center" style="width:5%">#</th>
                 <th>Movie</th>
                 <th>Genre</th>
-                <th>Number available</th>
+                <th>Release Date</th>
+                <th>Number Available</th>
             </tr>
         </thead>
         <tbody>
@@ -36,14 +37,15 @@
             {
                 if (Model.Movies.ElementAt(i).NumberAvailable > 0)
                 {
-                    <tr>
-                        <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-success btn-xs" })</td>
-                        <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                        <td class="text-center">@(counter++)</td>
-                        <td>@Model.Movies.ElementAt(i).Name</td>
-                        <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
-                        <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
-                    </tr>
+            <tr>
+                <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-success btn-xs" })</td>
+                <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                <td class="text-center">@(counter++)</td>
+                <td>@Model.Movies.ElementAt(i).Name</td>
+                <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
+                <td>@Model.Movies.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
+            </tr>
                 }
             }
         </tbody>
@@ -59,7 +61,9 @@
                 <th class="text-center" style="width:5%">#</th>
                 <th>Movie</th>
                 <th>Genre</th>
-                <th>Number available</th>
+                <th>Platform</th>
+                <th>Release Date</th>
+                <th>Number Available</th>
             </tr>
         </thead>
         <tbody>
@@ -71,14 +75,16 @@
             {
                 if (Model.Games.ElementAt(i).NumberAvailable > 0)
                 { 
-                    <tr>
-                        <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-success btn-xs" })</td>
-                        <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                        <td class="text-center">@(counter++)</td>
-                        <td>@Model.Games.ElementAt(i).Name</td>
-                        <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
-                        <td>@Model.Games.ElementAt(i).NumberAvailable</td>
-                    </tr>
+            <tr>
+                <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-success btn-xs" })</td>
+                <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                <td class="text-center">@(counter++)</td>
+                <td>@Model.Games.ElementAt(i).Name</td>
+                <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
+                <td>@Model.Games.ElementAt(i).GamePlatform.Name</td>
+                <td>@Model.Games.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                <td>@Model.Games.ElementAt(i).NumberAvailable</td>
+            </tr>
                 }
             }
         </tbody>

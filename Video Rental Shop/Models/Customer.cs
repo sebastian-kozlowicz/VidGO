@@ -17,5 +17,6 @@ namespace Video_Rental_Shop.Models
         public DateTime? Birthdate { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
+        public IList<Rental> Rentals { get; set; }
     }
 }

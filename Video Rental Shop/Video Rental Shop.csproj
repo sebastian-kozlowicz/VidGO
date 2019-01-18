@@ -326,7 +326,7 @@
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RentalDetailsViewModel.cs" />
-    <Compile Include="ViewModels\RentalViewModel.cs" />
+    <Compile Include="ViewModels\NewRentalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
