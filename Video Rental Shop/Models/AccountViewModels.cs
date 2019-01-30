@@ -79,6 +79,8 @@ namespace Video_Rental_Shop.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public bool IsManager { get; set; }
     }
 
     public class ResetPasswordViewModel
