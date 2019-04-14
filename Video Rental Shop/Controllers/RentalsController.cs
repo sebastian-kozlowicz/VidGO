@@ -106,8 +106,21 @@ namespace Video_Rental_Shop.Controllers
             return View(viewModel);
         }
 
-        [Route("Rentals/ReturnProduct/{rentalId}/{productType}")]
-        public ActionResult ReturnProduct(int rentalId, string productType)
+        public ActionResult AllRentedProducts()
+        {
+            var rentals = _context.Rentals
+                .Include(r => r.Movie)
+                .Include(r => r.Customer)
+                .Include(r => r.Movie.MovieGenre)
+                .Include(r => r.Game)
+                .Include(r => r.Game.GameGenre)
+                .ToList();
+
+            return View(rentals);
+        }
+
+        [Route("Rentals/ReturnProduct/{rentalId}/{productType}/{redirectTo}")]
+        public ActionResult ReturnProduct(int rentalId, string productType, string redirectTo)
         {
             var rental = _context.Rentals.SingleOrDefault(r => r.Id == rentalId);
             Movie movie = null;
@@ -133,7 +146,10 @@ namespace Video_Rental_Shop.Controllers
             rental.DateReturned = DateTime.Now;
             _context.SaveChanges();
 
-            return RedirectToAction("RentedProducts", "Rentals", new { id = rental.CustomerId });
+            if (redirectTo == "RentedProducts")
+                return RedirectToAction("RentedProducts", "Rentals", new { id = rental.CustomerId });
+
+            return RedirectToAction("AllRentedProducts", "Rentals");
         }
     }
 }

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Video_Rental_Shop.Models.Rental>
+
+@{
+    ViewBag.Title = "AllRentedProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    int count = 1;
+}
+
+<h2>All rented products</h2>
+
+<table id="rentals" class="table table-bordered table-hover">
+    <thead>
+        <tr style="display:none">
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center" style="width:5%">Options</th>
+            <th class="text-center" style="width:5%">#</th>
+            <th>Customer</th>
+            <th>Product Title</th>
+            <th>Type</th>
+            <th>Genre</th>
+            <th>Date rented</th>
+            <th>Date returned</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            string productType()
+            {
+                if (row.Movie != null)
+                {
+                    return "Movie";
+                }
+                return "Game";
+            }
+            <tr>
+                @if (row.DateReturned == null)
+                {
+                    <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = row.Id, productType = productType(), redirectTo ="AllRentedProducts" }, new { @class = "btn btn-success btn-xs" })</td>
+                }
+                else
+                {
+                    <td style="width:5%"><button class="btn btn-success btn-xs">Return</button> </td>
+                }
+
+                @if (row.MovieId != null)
+                {
+                    <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = row.Movie.Id }, new { @class = "btn btn-info btn-xs" })</td>
+
+                    <td class="text-center">@(count++)</td>
+                    <td>@row.Customer.Name @row.Customer.Surname</td>
+                    <td>@row.Movie.Name</td>
+                    <td>Movie</td>
+                    <td>@row.Movie.MovieGenre.Name</td>
+                    <td>@row.DateRented.ToShortDateString()</td>
+
+                    if (row.DateReturned != null)
+                    {
+                        <td>@row.DateReturned.Value.ToShortDateString()</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                }
+
+                @if (row.GameId != null)
+                {
+                    <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = row.Game.Id }, new { @class = "btn btn-info btn-xs" })</td>
+
+                    <td class="text-center">@(count++)</td>
+                    <td>@row.Customer.Name @row.Customer.Surname</td>
+                    <td>@row.Game.Name</td>
+                    <td>Game</td>
+                    <td>@row.Game.GameGenre.Name</td>
+                    <td>@row.DateRented.ToShortDateString()</td>
+
+                    if (row.DateReturned != null)
+                    {
+                        <td>@row.DateReturned.Value.ToShortDateString()</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#rentals").DataTable();
+        });
+    </script>
+}

@@ -682,6 +682,7 @@
     <Content Include="Views\Games\GameForm.cshtml" />
     <Content Include="Views\Games\ReadOnlyList.cshtml" />
     <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Rentals\AllRentedProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

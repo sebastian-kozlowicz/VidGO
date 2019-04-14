@@ -35,7 +35,7 @@
 
                 string productType()
                 {
-                    if (@Model.Movies.ElementAt(i) != null)
+                    if (Model.Movies.ElementAt(i) != null)
                     {
                         return "Movie";
                     }
@@ -45,7 +45,7 @@
                 <tr>
                     @if (@Model.DateReturned.ElementAt(i) == null)
                     {
-                        <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = Model.RentalIds.ElementAt(i), productType = productType()}, new { @class = "btn btn-success btn-xs" })</td>
+                        <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = Model.RentalIds.ElementAt(i), productType = productType(), redirectTo = "RentedProducts"}, new { @class = "btn btn-success btn-xs" })</td>
                     }
                     else
                     {
@@ -74,7 +74,7 @@
 
                     <td>@Model.DatesRented.ElementAt(i).ToShortDateString()</td>
 
-                    @if (@Model.DateReturned.ElementAt(i) != null)
+                    @if (Model.DateReturned.ElementAt(i) != null)
                     {
                         <td>@Model.DateReturned.ElementAt(i).Value.ToShortDateString()</td>
                     }
