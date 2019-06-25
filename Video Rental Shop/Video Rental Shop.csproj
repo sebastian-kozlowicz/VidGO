@@ -295,6 +295,10 @@
     <Compile Include="Migrations\201901292104010_AddIsManagerToApplicationUser.Designer.cs">
       <DependentUpon>201901292104010_AddIsManagerToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906252103158_AddPriceToMoviesTable.cs" />
+    <Compile Include="Migrations\201906252103158_AddPriceToMoviesTable.Designer.cs">
+      <DependentUpon>201906252103158_AddPriceToMoviesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -743,6 +747,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901292104010_AddIsManagerToApplicationUser.resx">
       <DependentUpon>201901292104010_AddIsManagerToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906252103158_AddPriceToMoviesTable.resx">
+      <DependentUpon>201906252103158_AddPriceToMoviesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
