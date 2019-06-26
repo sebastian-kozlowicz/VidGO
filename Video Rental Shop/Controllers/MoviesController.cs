@@ -114,15 +114,24 @@ namespace Video_Rental_Shop.Controllers
             else
             {
                 var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+                movieInDb.NumberAvailable = NewNumberAvailable(movieInDb, movie);
                 movieInDb.Name = movie.Name;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.Price = movie.Price;
                 movieInDb.MovieGenreId = movie.MovieGenreId;
             }
 
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Movies");
+        }
+
+        private int? NewNumberAvailable(Movie movieInDb, Movie movie)
+        {
+            var NumberInStockDifference = movie.NumberInStock - movieInDb.NumberInStock;
+
+            return movie.NumberAvailable + NumberInStockDifference;
         }
     }
 }
