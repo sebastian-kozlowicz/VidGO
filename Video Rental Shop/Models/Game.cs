@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,9 +15,12 @@ namespace Video_Rental_Shop.Models
         public DateTime? ReleaseDate { get; set; }
         public int? NumberInStock { get; set; }
         public int? NumberAvailable { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal? Price { get; set; }
         public GameGenre GameGenre { get; set; }
         public byte GameGenreId { get; set; }
         public GamePlatform GamePlatform { get; set; }
         public byte GamePlatformId { get; set; }
+        public IList<Rental> Rentals { get; set; }
     }
 }
