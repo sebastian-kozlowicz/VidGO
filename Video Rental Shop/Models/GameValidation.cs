@@ -20,6 +20,10 @@ namespace Video_Rental_Shop.Models
             RuleFor(m => m.NumberInStock).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Number In Stock field is required")
                 .GreaterThan(0).WithMessage("Quantity must be greater than 0");
+
+            RuleFor(m => m.Price).Cascade(CascadeMode.StopOnFirstFailure)
+               .NotEmpty().WithMessage("The Price field is required")
+               .GreaterThan(0).WithMessage("Price must be greater than 0");
         }
     }
 }
