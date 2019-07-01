@@ -37,6 +37,7 @@
         @Html.DropDownListFor(m => m.Game.GamePlatformId, new SelectList(Model.Platforms, "Id", "Name"), new { @class = "form-control" })
     </div>
     @Html.HiddenFor(m => m.Game.Id)
+    @Html.HiddenFor(m => m.Game.NumberAvailable)
     @Html.AntiForgeryToken()
 
     <button type="submit" class="btn btn-primary">Save</button>

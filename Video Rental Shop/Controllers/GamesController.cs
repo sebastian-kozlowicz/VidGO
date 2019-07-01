@@ -119,6 +119,7 @@ namespace Video_Rental_Shop.Controllers
             else
             {
                 var gameInDb = _context.Games.Single(c => c.Id == game.Id);
+                gameInDb.NumberAvailable = NewNumberAvailable(gameInDb, game);
                 gameInDb.Name = game.Name;
                 gameInDb.ReleaseDate = game.ReleaseDate;
                 gameInDb.NumberInStock = game.NumberInStock;
@@ -128,6 +129,13 @@ namespace Video_Rental_Shop.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Games");
+        }
+
+        private int? NewNumberAvailable(Game gameInDb, Game game)
+        {
+            var NumberInStockDifference = game.NumberInStock - gameInDb.NumberInStock;
+
+            return game.NumberAvailable + NumberInStockDifference;
         }
     }
 }
