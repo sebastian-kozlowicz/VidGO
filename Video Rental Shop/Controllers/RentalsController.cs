@@ -84,26 +84,16 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult RentedProducts(int id)
         {
-            RentalDetailsViewModel viewModel = null;
+            var rental = _context.Rentals
+                .Include(r => r.Movie)
+                .Include(r => r.Customer)
+                .Include(r => r.Movie.MovieGenre)
+                .Include(r => r.Game)
+                .Include(r => r.Game.GameGenre)
+                .Where(c => c.CustomerId == id)
+                .ToList();
 
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            var movies = _context.Rentals.Where(r => r.CustomerId == id).Select(m => m.Movie).Include(m => m.MovieGenre).ToList();
-            var games = _context.Rentals.Where(r => r.CustomerId == id).Select(g => g.Game).Include(g => g.GameGenre).ToList();
-            var datesRented = _context.Rentals.Where(r => r.CustomerId == id).Select(d => d.DateRented).ToList();
-            var datesReturned = _context.Rentals.Where(r => r.CustomerId == id).Select(d => d.DateReturned).ToList();
-            var rentalIds = _context.Rentals.Where(r => r.Customer.Id == id).Select(r => r.Id).ToList();
-
-            viewModel = new RentalDetailsViewModel
-            {
-                RentalIds = rentalIds,
-                Customers = customer,
-                Movies = movies,
-                Games = games,
-                DatesRented = datesRented,
-                DateReturned = datesReturned
-            };
-
-            return View(viewModel);
+            return View(rental);
         }
 
         public ActionResult AllRentedProducts()
