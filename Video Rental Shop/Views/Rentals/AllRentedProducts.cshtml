@@ -41,7 +41,7 @@
             <tr>
                 @if (row.DateReturned == null)
                 {
-                    <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = row.Id, productType = productType(), redirectTo ="AllRentedProducts" }, new { @class = "btn btn-success btn-xs" })</td>
+                    <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = row.Id, productType = productType(), redirectTo = "AllRentedProducts" }, new { @class = "btn btn-success btn-xs" })</td>
                 }
                 else
                 {
@@ -51,43 +51,32 @@
                 @if (row.MovieId != null)
                 {
                     <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = row.Movie.Id }, new { @class = "btn btn-info btn-xs" })</td>
-
                     <td class="text-center">@(count++)</td>
                     <td>@row.Customer.Name @row.Customer.Surname</td>
                     <td>@row.Movie.Name</td>
                     <td>Movie</td>
                     <td>@row.Movie.MovieGenre.Name</td>
-                    <td>@row.DateRented.ToShortDateString()</td>
-
-                    if (row.DateReturned != null)
-                    {
-                        <td>@row.DateReturned.Value.ToShortDateString()</td>
-                    }
-                    else
-                    {
-                        <td>-</td>
-                    }
                 }
 
                 @if (row.GameId != null)
                 {
                     <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = row.Game.Id }, new { @class = "btn btn-info btn-xs" })</td>
-
                     <td class="text-center">@(count++)</td>
                     <td>@row.Customer.Name @row.Customer.Surname</td>
                     <td>@row.Game.Name</td>
                     <td>Game</td>
                     <td>@row.Game.GameGenre.Name</td>
-                    <td>@row.DateRented.ToShortDateString()</td>
+                }
 
-                    if (row.DateReturned != null)
-                    {
-                        <td>@row.DateReturned.Value.ToShortDateString()</td>
-                    }
-                    else
-                    {
-                        <td>-</td>
-                    }
+                <td>@row.DateRented.ToShortDateString()</td>
+
+                @if (row.DateReturned != null)
+                {
+                    <td>@row.DateReturned.Value.ToShortDateString()</td>
+                }
+                else
+                {
+                    <td>-</td>
                 }
             </tr>
         }
