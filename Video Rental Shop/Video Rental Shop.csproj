@@ -324,7 +324,6 @@
     <Compile Include="ViewModels\GameFormViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
-    <Compile Include="ViewModels\RentalDetailsViewModel.cs" />
     <Compile Include="ViewModels\NewRentalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
