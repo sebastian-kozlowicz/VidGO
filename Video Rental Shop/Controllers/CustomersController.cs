@@ -107,6 +107,7 @@ namespace Video_Rental_Shop.Controllers
                 customerInDb.Surname = customer.Surname;
                 customerInDb.Email = customer.Email;
                 customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.Balance = customer.Balance;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
             }
 
