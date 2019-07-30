@@ -292,3 +292,4 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video Rental Shop.pdb
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddPriceToMoviesTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddPriceToGamesTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddBalanceToCustomersTable.resources

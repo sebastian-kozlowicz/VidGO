@@ -303,6 +303,10 @@
     <Compile Include="Migrations\201906272136077_AddPriceToGamesTable.Designer.cs">
       <DependentUpon>201906272136077_AddPriceToGamesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907301131579_AddBalanceToCustomersTable.cs" />
+    <Compile Include="Migrations\201907301131579_AddBalanceToCustomersTable.Designer.cs">
+      <DependentUpon>201907301131579_AddBalanceToCustomersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -756,6 +760,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906272136077_AddPriceToGamesTable.resx">
       <DependentUpon>201906272136077_AddPriceToGamesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907301131579_AddBalanceToCustomersTable.resx">
+      <DependentUpon>201907301131579_AddBalanceToCustomersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
