@@ -14,6 +14,8 @@ namespace Video_Rental_Shop.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Balance { get; set; }
         public DateTime? Birthdate { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
