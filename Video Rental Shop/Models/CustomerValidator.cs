@@ -25,6 +25,10 @@ namespace Video_Rental_Shop.Models
                 .NotNull().WithMessage("The Birthday field is required")
                 .LessThan(c => DateTime.Now).WithMessage($"Birthdate must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}");
 
+            RuleFor(c => c.Balance).Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("The Balance field is required")
+                .GreaterThanOrEqualTo(0).WithMessage("Balance must be greater than or equal to 0");
+
             RuleFor(c => c).Cascade(CascadeMode.StopOnFirstFailure)
                 .Custom((c, context) =>
                 {
