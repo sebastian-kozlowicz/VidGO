@@ -12,84 +12,97 @@
     <button id="js-gamesButton" class="btn btn-primary">Show Video Games</button>
 </div>
 
-<form>
-    <table id="movies" class="table table-bordered table-hover">
-        <thead>
-            <tr style="display:none">
-                <th></th>
-            </tr>
-            <tr>
-                <th colspan="2" class="text-center" style="width:5%">Options</th>
-                <th class="text-center" style="width:5%">#</th>
-                <th>Movie</th>
-                <th>Genre</th>
-                <th>Release Date</th>
-                <th>Number Available</th>
-            </tr>
-        </thead>
-        <tbody>
+<table id="movies" class="table table-bordered table-hover">
+    <thead>
+        <tr style="display:none">
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center" style="width:5%">Options</th>
+            <th class="text-center" style="width:5%">#</th>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>Number Available</th>
+        </tr>
+    </thead>
+    <tbody>
 
-            @{
-                int counter = 1;
-            }
+        @{
+            int counter = 1;
+        }
 
-            @for (int i = 0; i < Model.Movies.Count(); i++)
+        @for (int i = 0; i < Model.Movies.Count(); i++)
+        {
+            if (Model.Movies.ElementAt(i).NumberAvailable > 0)
             {
-                if (Model.Movies.ElementAt(i).NumberAvailable > 0)
-                {
-            <tr>
-                <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-success btn-xs" })</td>
-                <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                <td class="text-center">@(counter++)</td>
-                <td>@Model.Movies.ElementAt(i).Name</td>
-                <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
-                <td>@Model.Movies.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
-            </tr>
-                }
-            }
-        </tbody>
-    </table>
-
-    <table id="games" class="table table-bordered table-hover">
-        <thead>
-            <tr style="display:none">
-                <th></th>
-            </tr>
-            <tr>
-                <th colspan="2" class="text-center" style="width:5%">Options</th>
-                <th class="text-center" style="width:5%">#</th>
-                <th>Movie</th>
-                <th>Genre</th>
-                <th>Platform</th>
-                <th>Release Date</th>
-                <th>Number Available</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                counter = 1;
-            }
-
-            @for (int i = 0; i < Model.Games.Count(); i++)
+        <tr>
+            @if (Model.Customer.Balance > Model.Movies.ElementAt(i).Price)
             {
-                if (Model.Games.ElementAt(i).NumberAvailable > 0)
-                { 
-            <tr>
-                <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-success btn-xs" })</td>
-                <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                <td class="text-center">@(counter++)</td>
-                <td>@Model.Games.ElementAt(i).Name</td>
-                <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
-                <td>@Model.Games.ElementAt(i).GamePlatform.Name</td>
-                <td>@Model.Games.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                <td>@Model.Games.ElementAt(i).NumberAvailable</td>
-            </tr>
-                }
+                <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-success btn-xs js-rent-movie" })</td>
             }
-        </tbody>
-    </table>
-</form>
+            else
+            {
+                <td><button class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
+            }
+            <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+            <td class="text-center">@(counter++)</td>
+            <td>@Model.Movies.ElementAt(i).Name</td>
+            <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
+            <td>@Model.Movies.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+            <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<table id="games" class="table table-bordered table-hover">
+    <thead>
+        <tr style="display:none">
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center" style="width:5%">Options</th>
+            <th class="text-center" style="width:5%">#</th>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Platform</th>
+            <th>Release Date</th>
+            <th>Number Available</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            counter = 1;
+        }
+
+        @for (int i = 0; i < Model.Games.Count(); i++)
+        {
+            if (Model.Games.ElementAt(i).NumberAvailable > 0)
+            {
+                <tr>
+
+                    @if (Model.Customer.Balance > Model.Games.ElementAt(i).Price)
+                    {
+                        <td>@Html.ActionLink("Rent game", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Games.ElementAt(i).Id, productType = "Game" }, new { @class = "btn btn-success btn-xs js-rent-game" })</td>
+                    }
+                    else
+                    {
+                        <td><button class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
+                    }
+                    <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                    <td class="text-center">@(counter++)</td>
+                    <td>@Model.Games.ElementAt(i).Name</td>
+                    <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
+                    <td>@Model.Games.ElementAt(i).GamePlatform.Name</td>
+                    <td>@Model.Games.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                    <td>@Model.Games.ElementAt(i).NumberAvailable</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
 
 @section scripts
 {
@@ -114,6 +127,14 @@
                 $("#games_wrapper").show()
                 $("#movies_wrapper").hide()
             });
+        });
+
+        $("#movies").on("click", ".js-rent-movie", function () {
+            toastr.error("Insufficient founds");
+        });
+
+        $("#games").on("click", ".js-rent-game", function () {
+            toastr.error("Insufficient founds");
         });
     </script>
 }
