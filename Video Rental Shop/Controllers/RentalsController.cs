@@ -79,7 +79,7 @@ namespace Video_Rental_Shop.Controllers
             _context.Rentals.Add(rental);
             _context.SaveChanges();
 
-            return RedirectToAction("RentedProducts", "Rentals", new { id = customerId });
+            return Json(new { result = "Redirect", url = Url.Action("RentedProducts", "Rentals", new { id = customerId }) });
         }
 
         public ActionResult RentedProducts(int id)
