@@ -39,7 +39,7 @@
                 <tr>
                     @if (Model.Customer.Balance >= Model.Movies.ElementAt(i).Price)
                     {
-                        <td>@Html.ActionLink("Rent movie", "Save", "Rentals", new { customerId = Model.Customer.Id, Id = Model.Movies.ElementAt(i).Id, productType = "Movie" }, new { @class = "btn btn-success btn-xs" })</td>
+                        <td><button data-customer-id="@Model.Customer.Id" data-movie-id="@Model.Movies.ElementAt(i).Id" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie-confirm">Rent game</button></td>
                     }
                     else
                     {
@@ -131,6 +131,24 @@
 
         $("#movies").on("click", ".js-rent-movie", function () {
             toastr.error("Insufficient founds");
+        });
+
+        $("#movies").on("click", ".js-rent-movie-confirm", function () {
+            var button = $(this);
+
+            bootbox.confirm("Are you sure you want to rent this game?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/Rentals/Save/" + button.attr("data-customer-id") + "/" + button.attr("data-movie-id") + "/" + button.attr("data-product-type"),
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function (response) {
+                            if (response.result == 'Redirect')
+                                window.location = response.url;
+                        }
+                    });
+                }
+            });
         });
 
         $("#games").on("click", ".js-rent-game", function () {
