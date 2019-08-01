@@ -9,7 +9,7 @@
     int count = 1;
 }
 
-@if (count > 0)
+@if (Model.Any())
 {
     <h2>Products rented for @Model.ElementAt(0).Customer.Name @Model.ElementAt(0).Customer.Surname</h2>
 

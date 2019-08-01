@@ -29,6 +29,7 @@ else
                 <th>Genre</th>
                 <th>Release Date</th>
                 <th>Number Available</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@ else
                 <td>@Model.ElementAt(i).MovieGenre.Name</td>
                 <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
                 <td>@Model.ElementAt(i).NumberAvailable</td>
+                <td>@Model.ElementAt(i).Price$</td>
             </tr>
             }
         </tbody>

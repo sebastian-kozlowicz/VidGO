@@ -20,6 +20,9 @@ else
                 <th>Game</th>
                 <th>Genre</th>
                 <th>Platform</th>
+                <th>Release Date</th>
+                <th>Number Available</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +34,9 @@ else
                 <td>@Model.ElementAt(i).Name</td>
                 <td>@Model.ElementAt(i).GameGenre.Name</td>
                 <td>@Model.ElementAt(i).GamePlatform.Name</td>
+                <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                <td>@Model.ElementAt(i).NumberAvailable</td>
+                <td>@Model.ElementAt(i).Price$</td>
             </tr>
             }
         </tbody>
