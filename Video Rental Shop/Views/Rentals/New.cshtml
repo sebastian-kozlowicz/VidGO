@@ -37,14 +37,7 @@
             if (Model.Movies.ElementAt(i).NumberAvailable > 0)
             {
                 <tr>
-                    @if (Model.Customer.Balance >= Model.Movies.ElementAt(i).Price)
-                    {
-                        <td><button data-customer-id="@Model.Customer.Id" data-movie-id="@Model.Movies.ElementAt(i).Id" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie-confirm">Rent movie</button></td>
-                    }
-                    else
-                    {
-                        <td><button class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
-                    }
+                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-movie-price="@Model.Movies.ElementAt(i).Price" data-movie-id="@Model.Movies.ElementAt(i).Id" data-discount-rate="@Model.Customer.MembershipType.DiscountRate" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
                     <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
                     <td class="text-center">@(counter++)</td>
                     <td>@Model.Movies.ElementAt(i).Name</td>
@@ -129,26 +122,54 @@
             });
         });
 
-        $("#movies").on("click", ".js-rent-movie", function () {
-            toastr.error("Insufficient founds");
+        $(document).ready(function () {
+            if (localStorage.getItem("Notification")) {
+                toastr.success("Founds have been successfully added");
+                localStorage.clear();
+            }
         });
 
-        $("#movies").on("click", ".js-rent-movie-confirm", function () {
+        $("#movies").on("click", ".js-rent-movie", function () {
             var button = $(this);
 
-            bootbox.confirm("Are you sure you want to rent this movie?", function (result) {
-                if (result) {
-                    $.ajax({
-                        url: "/Rentals/Save/" + button.attr("data-customer-id") + "/" + button.attr("data-movie-id") + "/" + button.attr("data-product-type"),
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function (response) {
-                            if (response.result == 'Redirect')
-                                window.location = response.url;
-                        }
-                    });
-                }
-            });
+            var customerBalance = button.attr("data-customer-balance");
+            var discountRate = button.attr("data-discount-rate");
+            var depositAmount = button.attr("data-movie-price");
+            if (discountRate != 0)
+                depositAmount -= depositAmount * (discountRate / 100);
+            depositAmount -= customerBalance;
+
+            if (button.attr("data-customer-balance") >= depositAmount) {
+                bootbox.confirm("Are you sure you want to rent this movie?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Rentals/Save/" + button.attr("data-customer-id") + "/" + button.attr("data-movie-id") + "/" + button.attr("data-product-type"),
+                            dataType: 'json',
+                            type: 'POST',
+                            success: function (response) {
+                                if (response.result == 'Redirect')
+                                    window.location = response.url;
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                toastr.error("Insufficient founds");
+
+                bootbox.confirm("Do you want to deposit " + depositAmount + "$ ?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Rentals/TopUpBalance/" + button.attr("data-customer-id") + "/" + depositAmount + "/",
+                            type: 'POST',
+                            success: function () {
+                                localStorage.setItem("Notification", "Success")
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            }
         });
 
         $("#games").on("click", ".js-rent-game", function () {

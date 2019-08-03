@@ -26,7 +26,7 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult New(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
             var movies = _context.Movies.Include(g => g.MovieGenre).ToList();
             var games = _context.Games.Include(g => g.GameGenre).Include(g => g.GamePlatform).ToList();
 
@@ -43,7 +43,7 @@ namespace Video_Rental_Shop.Controllers
         [Route("Rentals/Save/{customerId}/{Id}/{productType}")]
         public ActionResult Save(int customerId, int Id, string productType)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == customerId);
+            var customer = _context.Customers.Include(m => m.MembershipType).SingleOrDefault(c => c.Id == customerId);
 
             Rental rental = null;
             Movie movie = null;
@@ -52,6 +52,9 @@ namespace Video_Rental_Shop.Controllers
             if (productType == "Movie")
             {
                 movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
+                var moviePrice = movie.Price;
+                if (customer.MembershipType.DiscountRate != 0)
+                    moviePrice -= moviePrice * ((decimal)customer.MembershipType.DiscountRate / 100);
 
                 rental = new Rental
                 {
@@ -60,10 +63,14 @@ namespace Video_Rental_Shop.Controllers
                     DateRented = DateTime.Now
                 };
                 movie.NumberAvailable--;
+                customer.Balance -= (decimal)moviePrice;
             }
             else if (productType == "Game")
             {
                 game = _context.Games.SingleOrDefault(m => m.Id == Id);
+                var gamePrice = game.Price;
+                if (customer.MembershipType.DiscountRate != 0)
+                    gamePrice -= gamePrice * (customer.MembershipType.DiscountRate / 100);
 
                 rental = new Rental
                 {
@@ -73,7 +80,7 @@ namespace Video_Rental_Shop.Controllers
                 };
 
                 game.NumberAvailable--;
-                _context.Rentals.Add(rental);
+                customer.Balance -= (decimal)gamePrice;
             }
 
             _context.Rentals.Add(rental);
@@ -140,6 +147,17 @@ namespace Video_Rental_Shop.Controllers
                 return RedirectToAction("RentedProducts", "Rentals", new { id = rental.CustomerId });
 
             return RedirectToAction("AllRentedProducts", "Rentals");
+        }
+
+        [Route("Rentals/TopUpBalance/{customerId}/{depositAmount:decimal}")]
+        public ActionResult TopUpBalance(int customerId, decimal depositAmount)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == customerId);
+            customer.Balance += depositAmount;
+
+            _context.SaveChanges();
+
+            return null;
         }
     }
 }
