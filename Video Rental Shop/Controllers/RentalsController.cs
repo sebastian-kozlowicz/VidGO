@@ -70,7 +70,7 @@ namespace Video_Rental_Shop.Controllers
                 game = _context.Games.SingleOrDefault(m => m.Id == Id);
                 var gamePrice = game.Price;
                 if (customer.MembershipType.DiscountRate != 0)
-                    gamePrice -= gamePrice * (customer.MembershipType.DiscountRate / 100);
+                    gamePrice -= gamePrice * ((decimal)customer.MembershipType.DiscountRate / 100);
 
                 rental = new Rental
                 {

@@ -75,15 +75,7 @@
             if (Model.Games.ElementAt(i).NumberAvailable > 0)
             {
                 <tr>
-
-                    @if (Model.Customer.Balance >= Model.Games.ElementAt(i).Price)
-                    {
-                        <td><button data-customer-id="@Model.Customer.Id" data-game-id="@Model.Games.ElementAt(i).Id" data-product-type="Game" class="btn btn-success btn-xs js-rent-game-confirm">Rent game</button></td>
-                    }
-                    else
-                    {
-                        <td><button class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
-                    }
+                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-game-price="@Model.Games.ElementAt(i).Price" data-game-id="@Model.Games.ElementAt(i).Id" data-discount-rate="@Model.Customer.MembershipType.DiscountRate" data-product-type="Game" class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
                     <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
                     <td class="text-center">@(counter++)</td>
                     <td>@Model.Games.ElementAt(i).Name</td>
@@ -173,25 +165,46 @@
         });
 
         $("#games").on("click", ".js-rent-game", function () {
-            toastr.error("Insufficient founds");
-        });
-
-        $("#games").on("click", ".js-rent-game-confirm", function () {
             var button = $(this);
 
-            bootbox.confirm("Are you sure you want to rent this game?", function (result) {
-                if (result) {
-                    $.ajax({
-                        url: "/Rentals/Save/" + button.attr("data-customer-id") + "/" + button.attr("data-game-id") + "/" + button.attr("data-product-type"),
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function (response) {
-                            if (response.result == 'Redirect')
-                                window.location = response.url;
-                        }
-                    });
-                }
-            });
+            var customerBalance = button.attr("data-customer-balance");
+            var discountRate = button.attr("data-discount-rate");
+            var depositAmount = button.attr("data-game-price");
+            if (discountRate != 0)
+                depositAmount -= depositAmount * (discountRate / 100);
+            depositAmount -= customerBalance;
+
+            if (button.attr("data-customer-balance") >= depositAmount) {
+                bootbox.confirm("Are you sure you want to rent this game?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Rentals/Save/" + button.attr("data-customer-id") + "/" + button.attr("data-game-id") + "/" + button.attr("data-product-type"),
+                            dataType: 'json',
+                            type: 'POST',
+                            success: function (response) {
+                                if (response.result == 'Redirect')
+                                    window.location = response.url;
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                toastr.error("Insufficient founds");
+
+                bootbox.confirm("Do you want to deposit " + depositAmount + "$ ?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Rentals/TopUpBalance/" + button.attr("data-customer-id") + "/" + depositAmount + "/",
+                            type: 'POST',
+                            success: function () {
+                                localStorage.setItem("Notification", "Success")
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            }
         });
     </script>
 }
