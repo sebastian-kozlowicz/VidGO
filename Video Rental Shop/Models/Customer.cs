@@ -17,8 +17,7 @@ namespace Video_Rental_Shop.Models
         [DataType(DataType.Currency)]
         public decimal Balance { get; set; }
         public DateTime? Birthdate { get; set; }
-        public MembershipType MembershipType { get; set; }
-        public byte MembershipTypeId { get; set; }
+        public Membership Membership { get; set; }
         public IList<Rental> Rentals { get; set; }
     }
 }

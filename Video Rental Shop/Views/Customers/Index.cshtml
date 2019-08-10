@@ -43,7 +43,7 @@ else
                 <td style="width:5%">@Html.ActionLink("History", "RentedProducts", "Rentals", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-success btn-xs" })</td>
                 <td class="text-center">@(i + 1)</td>
                 <td>@Model.ElementAt(i).Name @Model.ElementAt(i).Surname</td>
-                <td>@Model.ElementAt(i).MembershipType.Name</td>
+                <td>@Model.ElementAt(i).Membership.MembershipType.Name</td>
             </tr>
             }
         </tbody>

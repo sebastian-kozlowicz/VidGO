@@ -25,14 +25,14 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            var customers = _context.Customers.Include(c => c.Membership.MembershipType).ToList();
 
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.Membership.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
@@ -102,13 +102,13 @@ namespace Video_Rental_Shop.Controllers
                 _context.Customers.Add(customer);
             else
             {
-                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                var customerInDb = _context.Customers.Include(c => c.Membership).Single(c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
                 customerInDb.Surname = customer.Surname;
                 customerInDb.Email = customer.Email;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.Balance = customer.Balance;
-                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.Membership.MembershipTypeId = customer.Membership.MembershipTypeId;
             }
 
             _context.SaveChanges();

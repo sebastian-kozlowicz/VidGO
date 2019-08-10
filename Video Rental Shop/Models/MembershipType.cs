@@ -12,7 +12,7 @@ namespace Video_Rental_Shop.Models
         public short DurationInMonths { get; set; }
         public byte SingUpFee { get; set; }
         public byte DiscountRate { get; set; }
-        public IList<Customer> Customers { get; set; }
+        public IList<Membership> Memberships { get; set; }
 
         public static readonly byte PayAsYouGo = 1;
     }

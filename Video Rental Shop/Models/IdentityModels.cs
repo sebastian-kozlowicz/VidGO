@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -25,6 +26,7 @@ namespace Video_Rental_Shop.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
         public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<Rental> Rentals { get; set; }
@@ -39,6 +41,21 @@ namespace Video_Rental_Shop.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Membership>()
+                        .Property(m => m.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<Customer>()
+                        .HasRequired(c => c.Membership)
+                        .WithRequiredPrincipal(m => m.Customer);
+
+
         }
     }
 }

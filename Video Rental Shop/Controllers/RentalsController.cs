@@ -26,7 +26,7 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult New(int id)
         {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.Membership.MembershipType).SingleOrDefault(c => c.Id == id);
             var movies = _context.Movies.Include(g => g.MovieGenre).ToList();
             var games = _context.Games.Include(g => g.GameGenre).Include(g => g.GamePlatform).ToList();
 
@@ -43,7 +43,7 @@ namespace Video_Rental_Shop.Controllers
         [Route("Rentals/Save/{customerId}/{Id}/{productType}")]
         public ActionResult Save(int customerId, int Id, string productType)
         {
-            var customer = _context.Customers.Include(m => m.MembershipType).SingleOrDefault(c => c.Id == customerId);
+            var customer = _context.Customers.Include(m => m.Membership.MembershipType).SingleOrDefault(c => c.Id == customerId);
 
             Rental rental = null;
             Movie movie = null;
@@ -53,8 +53,8 @@ namespace Video_Rental_Shop.Controllers
             {
                 movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
                 var moviePrice = movie.Price;
-                if (customer.MembershipType.DiscountRate != 0)
-                    moviePrice -= moviePrice * ((decimal)customer.MembershipType.DiscountRate / 100);
+                if (customer.Membership.MembershipType.DiscountRate != 0)
+                    moviePrice -= moviePrice * ((decimal)customer.Membership.MembershipType.DiscountRate / 100);
 
                 rental = new Rental
                 {
@@ -69,8 +69,8 @@ namespace Video_Rental_Shop.Controllers
             {
                 game = _context.Games.SingleOrDefault(m => m.Id == Id);
                 var gamePrice = game.Price;
-                if (customer.MembershipType.DiscountRate != 0)
-                    gamePrice -= gamePrice * ((decimal)customer.MembershipType.DiscountRate / 100);
+                if (customer.Membership.MembershipType.DiscountRate != 0)
+                    gamePrice -= gamePrice * ((decimal)customer.Membership.MembershipType.DiscountRate / 100);
 
                 rental = new Rental
                 {

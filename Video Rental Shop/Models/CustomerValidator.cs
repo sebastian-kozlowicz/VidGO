@@ -32,7 +32,7 @@ namespace Video_Rental_Shop.Models
             RuleFor(c => c).Cascade(CascadeMode.StopOnFirstFailure)
                 .Custom((c, context) =>
                 {
-                    if (c.MembershipTypeId != MembershipType.PayAsYouGo)
+                    if (c.Membership.MembershipTypeId != MembershipType.PayAsYouGo)
                     {
                         DateTime Current = DateTime.Today;
                         var age = Current.Year - Convert.ToDateTime(c.Birthdate).Year;

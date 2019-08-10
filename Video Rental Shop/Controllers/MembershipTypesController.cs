@@ -24,7 +24,7 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult Index()
         {
-            var membershipTypes = _context.MembershipTypes.Include(m => m.Customers).ToList();
+            var membershipTypes = _context.MembershipTypes.Include(m => m.Memberships).ToList();
 
             return View(membershipTypes);
         }

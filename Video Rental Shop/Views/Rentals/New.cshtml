@@ -37,7 +37,7 @@
             if (Model.Movies.ElementAt(i).NumberAvailable > 0)
             {
                 <tr>
-                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-movie-price="@Model.Movies.ElementAt(i).Price" data-movie-id="@Model.Movies.ElementAt(i).Id" data-discount-rate="@Model.Customer.MembershipType.DiscountRate" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
+                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-movie-price="@Model.Movies.ElementAt(i).Price" data-movie-id="@Model.Movies.ElementAt(i).Id" data-discount-rate="@Model.Customer.Membership.MembershipType.DiscountRate" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
                     <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
                     <td class="text-center">@(counter++)</td>
                     <td>@Model.Movies.ElementAt(i).Name</td>
@@ -75,7 +75,7 @@
             if (Model.Games.ElementAt(i).NumberAvailable > 0)
             {
                 <tr>
-                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-game-price="@Model.Games.ElementAt(i).Price" data-game-id="@Model.Games.ElementAt(i).Id" data-discount-rate="@Model.Customer.MembershipType.DiscountRate" data-product-type="Game" class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
+                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-game-price="@Model.Games.ElementAt(i).Price" data-game-id="@Model.Games.ElementAt(i).Id" data-discount-rate="@Model.Customer.Membership.MembershipType.DiscountRate" data-product-type="Game" class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
                     <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
                     <td class="text-center">@(counter++)</td>
                     <td>@Model.Games.ElementAt(i).Name</td>

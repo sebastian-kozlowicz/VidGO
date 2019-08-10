@@ -307,6 +307,10 @@
     <Compile Include="Migrations\201907301131579_AddBalanceToCustomersTable.Designer.cs">
       <DependentUpon>201907301131579_AddBalanceToCustomersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908102028440_AddMembershipsTable.cs" />
+    <Compile Include="Migrations\201908102028440_AddMembershipsTable.Designer.cs">
+      <DependentUpon>201908102028440_AddMembershipsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -315,6 +319,7 @@
     <Compile Include="Models\GameGenre.cs" />
     <Compile Include="Models\GamePlatform.cs" />
     <Compile Include="Models\GameValidation.cs" />
+    <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\MovieGenre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -769,6 +774,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907301131579_AddBalanceToCustomersTable.resx">
       <DependentUpon>201907301131579_AddBalanceToCustomersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908102028440_AddMembershipsTable.resx">
+      <DependentUpon>201908102028440_AddMembershipsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
