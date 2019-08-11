@@ -98,8 +98,14 @@ namespace Video_Rental_Shop.Controllers
                 return View("CustomerForm", viewModel);
             }
 
+            var durationInMonthsOfMembership = _context.MembershipTypes.Where(m => m.Id == customer.Membership.MembershipTypeId).Select(m => m.DurationInMonths).SingleOrDefault();
+
             if (customer.Id == 0)
+            {
+
+                customer = SetMembershipDuration(customer, durationInMonthsOfMembership);
                 _context.Customers.Add(customer);
+            }
             else
             {
                 var customerInDb = _context.Customers.Include(c => c.Membership).Single(c => c.Id == customer.Id);
@@ -108,12 +114,29 @@ namespace Video_Rental_Shop.Controllers
                 customerInDb.Email = customer.Email;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.Balance = customer.Balance;
-                customerInDb.Membership.MembershipTypeId = customer.Membership.MembershipTypeId;
+
+                if (customerInDb.Membership.MembershipTypeId != customer.Membership.MembershipTypeId)
+                {
+                    customerInDb.Membership.MembershipTypeId = customer.Membership.MembershipTypeId;
+                    customerInDb = SetMembershipDuration(customerInDb, durationInMonthsOfMembership);
+                }
             }
 
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
+        }
+
+        private Customer SetMembershipDuration(Customer customer, short durationInMonthsOfMembership)
+        {
+            customer.Membership.AssignDate = DateTime.Now;
+
+            if (customer.Membership.MembershipTypeId == MembershipType.PayAsYouGo)
+                customer.Membership.ExpiryDate = null;
+            else
+                customer.Membership.ExpiryDate = (DateTime.Now).AddMonths(durationInMonthsOfMembership);
+
+            return customer;
         }
     }
 }
