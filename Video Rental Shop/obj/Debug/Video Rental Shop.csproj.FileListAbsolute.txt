@@ -443,3 +443,4 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Vi
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Video Rental Shop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video Rental Shop.csproj.CopyComplete
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddMembershipsTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.SetWillCascadeOnDeleteToTrueForCustomersTable.resources

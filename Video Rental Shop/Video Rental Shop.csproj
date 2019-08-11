@@ -311,6 +311,10 @@
     <Compile Include="Migrations\201908102028440_AddMembershipsTable.Designer.cs">
       <DependentUpon>201908102028440_AddMembershipsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.cs" />
+    <Compile Include="Migrations\201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.Designer.cs">
+      <DependentUpon>201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -777,6 +781,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908102028440_AddMembershipsTable.resx">
       <DependentUpon>201908102028440_AddMembershipsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.resx">
+      <DependentUpon>201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

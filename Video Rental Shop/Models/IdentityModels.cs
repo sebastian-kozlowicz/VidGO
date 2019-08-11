@@ -53,9 +53,8 @@ namespace Video_Rental_Shop.Models
 
             modelBuilder.Entity<Customer>()
                         .HasRequired(c => c.Membership)
-                        .WithRequiredPrincipal(m => m.Customer);
-
-
+                        .WithRequiredPrincipal(m => m.Customer)
+                        .WillCascadeOnDelete(true);
         }
     }
 }
