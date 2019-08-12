@@ -103,7 +103,7 @@ namespace Video_Rental_Shop.Controllers
             if (customer.Id == 0)
             {
 
-                customer = SetMembershipDuration(customer, durationInMonthsOfMembership);
+                customer.SetMembershipDuration(customer);
                 _context.Customers.Add(customer);
             }
             else
@@ -118,25 +118,13 @@ namespace Video_Rental_Shop.Controllers
                 if (customerInDb.Membership.MembershipTypeId != customer.Membership.MembershipTypeId)
                 {
                     customerInDb.Membership.MembershipTypeId = customer.Membership.MembershipTypeId;
-                    customerInDb = SetMembershipDuration(customerInDb, durationInMonthsOfMembership);
+                    customerInDb.SetMembershipDuration(customerInDb);
                 }
             }
 
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
-        }
-
-        private Customer SetMembershipDuration(Customer customer, short durationInMonthsOfMembership)
-        {
-            customer.Membership.AssignDate = DateTime.Now;
-
-            if (customer.Membership.MembershipTypeId == MembershipType.PayAsYouGo)
-                customer.Membership.ExpiryDate = null;
-            else
-                customer.Membership.ExpiryDate = (DateTime.Now).AddMonths(durationInMonthsOfMembership);
-
-            return customer;
         }
     }
 }

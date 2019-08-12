@@ -27,6 +27,12 @@ namespace Video_Rental_Shop.Controllers
         public ActionResult New(int id)
         {
             var customer = _context.Customers.Include(c => c.Membership.MembershipType).SingleOrDefault(c => c.Id == id);
+            if (customer.Membership.ExpiryDate < DateTime.Now)
+            {
+                customer.Membership.MembershipTypeId = MembershipType.PayAsYouGo;
+                customer.SetMembershipDuration(customer);
+            }
+
             var movies = _context.Movies.Include(g => g.MovieGenre).ToList();
             var games = _context.Games.Include(g => g.GameGenre).Include(g => g.GamePlatform).ToList();
 
@@ -36,6 +42,8 @@ namespace Video_Rental_Shop.Controllers
                 Movies = movies,
                 Games = games
             };
+
+            _context.SaveChanges();
 
             return View(viewModel);
         }
