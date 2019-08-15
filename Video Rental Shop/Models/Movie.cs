@@ -20,5 +20,16 @@ namespace Video_Rental_Shop.Models
         public MovieGenre MovieGenre { get; set; }
         public byte MovieGenreId { get; set; }
         public IList<Rental> Rentals { get; set; }
+        
+        /// <summary>
+        /// Calculates new available number of movies after editing existing one 
+        /// </summary>
+        /// <param name="movieInDb">Editing movie in database</param>
+        /// <param name="movie">Edited copy of movie from database</param>
+        public void SetNewNumberAvailable(Movie movieInDb, Movie movie)
+        {
+           var NumberInStockDifference = movie.NumberInStock - movieInDb.NumberInStock;
+           movieInDb.NumberAvailable = movie.NumberAvailable + NumberInStockDifference;
+        }
     }
 }
