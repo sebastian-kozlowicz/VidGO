@@ -28,7 +28,13 @@ namespace Video_Rental_Shop.Models
             _context = new ApplicationDbContext();
         }
 
-        public Customer SetMembershipDuration(Customer customer)
+        /// <summary>
+        /// Sets AssignDate of membership to current date
+        /// If customer's membership type is PayAsYouGo ExpiryDate is set to null
+        /// Otwerwise add to current date number of months of membership duration and assign a result to ExpiryDate
+        /// </summary>
+        /// <param name="customer">Customer object</param>
+        public void SetMembershipDuration(Customer customer)
         {
             var durationInMonthsOfMembership = _context.MembershipTypes.Where(m => m.Id == customer.Membership.MembershipTypeId).Select(m => m.DurationInMonths).SingleOrDefault();
             customer.Membership.AssignDate = DateTime.Now;
@@ -39,8 +45,6 @@ namespace Video_Rental_Shop.Models
                 customer.Membership.ExpiryDate = (DateTime.Now).AddMonths(durationInMonthsOfMembership);
 
             _context.Dispose();
-
-            return customer;
         }
     }
 }

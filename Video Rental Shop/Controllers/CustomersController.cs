@@ -98,11 +98,8 @@ namespace Video_Rental_Shop.Controllers
                 return View("CustomerForm", viewModel);
             }
 
-            var durationInMonthsOfMembership = _context.MembershipTypes.Where(m => m.Id == customer.Membership.MembershipTypeId).Select(m => m.DurationInMonths).SingleOrDefault();
-
             if (customer.Id == 0)
             {
-
                 customer.SetMembershipDuration(customer);
                 _context.Customers.Add(customer);
             }

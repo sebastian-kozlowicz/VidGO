@@ -58,3 +58,6 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop.UnitTests\obj\Debug\Video Rental Shop.UnitTests.csproj.CopyComplete
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop.UnitTests\obj\Debug\Video Rental Shop.UnitTests.dll
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop.UnitTests\obj\Debug\Video Rental Shop.UnitTests.pdb
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop.UnitTests\bin\Debug\Video Rental Shop.UnitTests.dll.config
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop.UnitTests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop.UnitTests\bin\Debug\EntityFramework.SqlServer.xml
