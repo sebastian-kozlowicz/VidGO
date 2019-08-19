@@ -26,10 +26,7 @@ namespace Video_Rental_Shop
 
             bundles.Add(new ScriptBundle("~/bundles/jquery.datatables").Include(
                      "~/Scripts/datatables/jquery.datatables.js",
-                     "~/Scripts/datatables/datatables.bootstrap.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/typeahead.bundle").Include(
-                    "~/Scripts/typeahead.bundle.js"));
+                     "~/Scripts/datatables/datatables.bootstrap.js"));;
 
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                   "~/Scripts/toastr.js"));
@@ -37,7 +34,6 @@ namespace Video_Rental_Shop
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
-                      "~/Content/typeahead.css",
                       "~/Content/toastr.css",
                       "~/Content/site.css"));
         }

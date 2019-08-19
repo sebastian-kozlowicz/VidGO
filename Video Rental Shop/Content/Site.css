@@ -1,6 +1,16 @@
-﻿body {
+﻿* {
+    box-sizing: border-box;
+}
+
+html{
+    min-height:100%;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Verdana;
+    background: linear-gradient(to bottom, #fff 0%, #2aa1c0 100%);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -25,8 +35,4 @@ textarea {
 
 .input-validation-error {
     border: 2px solid #a94442;
-}
-
-#buttons {
-    margin-bottom:20px;
 }
