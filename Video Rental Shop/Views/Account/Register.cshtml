@@ -2,17 +2,17 @@
 
 @Styles.Render("~/Content/Custom/Registration/css/registration.css")
 
-<div class="registration-container">
-    @{
-        ViewBag.Title = "Create Account";
-    }
+@{
+    ViewBag.Title = "Create Account";
+}
 
+<div class="registration-container">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
     {
+        <img src="~/Content/Custom/Registration/img/user-icon.png">
+
         @Html.AntiForgeryToken()
         <h1>@ViewBag.Title</h1>
-        
-        <img src="~/Content/Custom/Registration/img/user-icon.jpg">
 
         <div class="form-group">
             @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "registration-input" })

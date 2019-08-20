@@ -13,7 +13,7 @@ img {
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    margin-top:-220px;
+    margin-top:-130px;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -83,6 +83,7 @@ input[type='radio']:checked:after {
 }
 
 button {
+    margin-top: 20px;
     border-radius: 20px;
     border: 1px solid #2aa1c0;
     background-color: #2aa1c0;

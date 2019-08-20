@@ -344,8 +344,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom\Login\css\login.css" />
+    <Content Include="Content\Custom\Login\img\login-icon.png" />
     <Content Include="Content\Custom\Registration\css\registration.css" />
-    <Content Include="Content\Custom\Registration\img\user-icon.jpg" />
+    <Content Include="Content\Custom\Registration\img\user-icon.png" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
