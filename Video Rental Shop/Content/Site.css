@@ -37,3 +37,58 @@ textarea {
 .input-validation-error {
     border: 2px solid #a94442;
 }
+
+.main-conntent-container {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 10px;
+    padding: 30px 40px 40px 40px;
+    margin: 40px 0px 40px 0px;
+    background: linear-gradient(180deg, #227f8e 120px, #fff 120px);
+}
+
+.dataTables_wrapper {
+    margin-top: 70px;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #f2f2f2
+}
+
+.table-title {
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.add-new-entity-button {
+    position: relative;
+    top: 30px;
+    right: 30px;
+    display: inline-block;
+}
+
+.add-new-entity-button img {
+    width: 50px;
+    height: 50px;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: auto;
+    background-color: #fff;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    color: #696969;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    top: -5px;
+    left: 105%;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.add-new-entity-button:hover .tooltip-text {
+    visibility: visible;
+}

@@ -6,7 +6,7 @@
     ViewBag.Title = "Log in";
 }
 <div class="login-main-container">
-    <div class="login-container">
+    <div class="login-sub-container">
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             <img src="~/Content/Custom/Login/img/login-icon.png">
