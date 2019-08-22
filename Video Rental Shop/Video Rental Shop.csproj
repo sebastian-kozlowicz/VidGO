@@ -348,11 +348,10 @@
     <Content Include="Content\Custom\Login\img\login-icon.png" />
     <Content Include="Content\Custom\Registration\css\registration.css" />
     <Content Include="Content\Custom\Registration\img\user-icon.png" />
-    <Content Include="Content\Custom\Shared\img\add.png" />
-    <Content Include="Content\Custom\Shared\img\cinema-camera.png" />
-    <Content Include="Content\Custom\Shared\img\movie-camera.png" />
-    <Content Include="Content\Custom\Shared\img\cam.png" />
-    <Content Include="Content\Custom\Shared\img\video-camera.png" />
+    <Content Include="Content\Custom\Shared\img\camera.png" />
+    <Content Include="Content\Custom\Shared\img\gamepad.png" />
+    <Content Include="Content\Custom\Shared\img\joystick.png" />
+    <Content Include="Content\Custom\Shared\img\new-customer.png" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
