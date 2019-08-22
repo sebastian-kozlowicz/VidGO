@@ -63,9 +63,9 @@ textarea {
 
 .add-new-entity-button {
     position: relative;
-    top: 30px;
-    right: 30px;
     display: inline-block;
+    top: 30px;
+    right: 25px;
 }
 
 .add-new-entity-button img {
@@ -83,7 +83,7 @@ textarea {
     padding: 10px;
     border-radius: 6px;
     top: -5px;
-    left: 105%;
+    left: 55px;
     position: absolute;
     white-space: nowrap;
     z-index: 1;
