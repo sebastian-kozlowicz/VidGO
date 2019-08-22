@@ -5,89 +5,128 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Rental for @Model.Customer.Name @Model.Customer.Surname</h2>
+<div class="main-conntent-container">
 
-<div id="buttons">
-    <button id="js-moviesButton" class="btn btn-primary">Show Movies</button>
-    <button id="js-gamesButton" class="btn btn-primary">Show Video Games</button>
+    <div class="row">
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <div id="buttons" class="row">
+                @if (Model.Movies.Any())
+                {
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <a id="js-moviesButton" class="add-new-entity-button">
+                            <img src='@Url.Content("~/Content/Custom/Shared/img/camera.png")' />
+                            <span class="tooltip-text">Show movies</span>
+                        </a>
+
+                    </div>
+                }
+                @if (Model.Games.Any())
+                {
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <a id="js-gamesButton" class="add-new-entity-button">
+                            <img src='@Url.Content("~/Content/Custom/Shared/img/gamepad.png")' />
+                            <span class="tooltip-text">Show games</span>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-xs-9 col-sm-9 col-md-9">
+            @if (Model.Movies.Any() || Model.Games.Any())
+            {
+                <h2 class="table-title">New Rental for @Model.Customer.Name @Model.Customer.Surname</h2>
+            }
+            else
+            {
+                <h2 class="table-title">We don't have any products yet.</h2>
+            }
+        </div>
+    </div>
+
+    @if (Model.Movies.Any())
+    {
+        <table id="movies" class="table table-bordered table-hover">
+            <thead>
+                <tr style="display:none">
+                    <th></th>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-center" style="width:5%">Options</th>
+                    <th class="text-center" style="width:5%">#</th>
+                    <th>Movie</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Number Available</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int counter = 1;
+                }
+
+                @for (int i = 0; i < Model.Movies.Count(); i++)
+                {
+                    if (Model.Movies.ElementAt(i).NumberAvailable > 0)
+                    {
+                        <tr>
+                            <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-movie-price="@Model.Movies.ElementAt(i).Price" data-movie-id="@Model.Movies.ElementAt(i).Id" data-discount-rate="@Model.Customer.Membership.MembershipType.DiscountRate" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
+                            <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                            <td class="text-center">@(counter++)</td>
+                            <td>@Model.Movies.ElementAt(i).Name</td>
+                            <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
+                            <td>@Model.Movies.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                            <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.Games.Any())
+    {
+        <table id="games" class="table table-bordered table-hover">
+            <thead>
+                <tr style="display:none">
+                    <th></th>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-center" style="width:5%">Options</th>
+                    <th class="text-center" style="width:5%">#</th>
+                    <th>Game</th>
+                    <th>Genre</th>
+                    <th>Platform</th>
+                    <th>Release Date</th>
+                    <th>Number Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int counter = 1;
+                }
+
+                @for (int i = 0; i < Model.Games.Count(); i++)
+                {
+                    if (Model.Games.ElementAt(i).NumberAvailable > 0)
+                    {
+                        <tr>
+                            <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-game-price="@Model.Games.ElementAt(i).Price" data-game-id="@Model.Games.ElementAt(i).Id" data-discount-rate="@Model.Customer.Membership.MembershipType.DiscountRate" data-product-type="Game" class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
+                            <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                            <td class="text-center">@(counter++)</td>
+                            <td>@Model.Games.ElementAt(i).Name</td>
+                            <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
+                            <td>@Model.Games.ElementAt(i).GamePlatform.Name</td>
+                            <td>@Model.Games.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                            <td>@Model.Games.ElementAt(i).NumberAvailable</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
 </div>
-
-<table id="movies" class="table table-bordered table-hover">
-    <thead>
-        <tr style="display:none">
-            <th></th>
-        </tr>
-        <tr>
-            <th colspan="2" class="text-center" style="width:5%">Options</th>
-            <th class="text-center" style="width:5%">#</th>
-            <th>Movie</th>
-            <th>Genre</th>
-            <th>Release Date</th>
-            <th>Number Available</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @{
-            int counter = 1;
-        }
-
-        @for (int i = 0; i < Model.Movies.Count(); i++)
-        {
-            if (Model.Movies.ElementAt(i).NumberAvailable > 0)
-            {
-                <tr>
-                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-movie-price="@Model.Movies.ElementAt(i).Price" data-movie-id="@Model.Movies.ElementAt(i).Id" data-discount-rate="@Model.Customer.Membership.MembershipType.DiscountRate" data-product-type="Movie" class="btn btn-success btn-xs js-rent-movie">Rent movie</button></td>
-                    <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                    <td class="text-center">@(counter++)</td>
-                    <td>@Model.Movies.ElementAt(i).Name</td>
-                    <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
-                    <td>@Model.Movies.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                    <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
-
-<table id="games" class="table table-bordered table-hover">
-    <thead>
-        <tr style="display:none">
-            <th></th>
-        </tr>
-        <tr>
-            <th colspan="2" class="text-center" style="width:5%">Options</th>
-            <th class="text-center" style="width:5%">#</th>
-            <th>Movie</th>
-            <th>Genre</th>
-            <th>Platform</th>
-            <th>Release Date</th>
-            <th>Number Available</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            counter = 1;
-        }
-
-        @for (int i = 0; i < Model.Games.Count(); i++)
-        {
-            if (Model.Games.ElementAt(i).NumberAvailable > 0)
-            {
-                <tr>
-                    <td><button data-customer-id="@Model.Customer.Id" data-customer-balance="@Model.Customer.Balance" data-game-price="@Model.Games.ElementAt(i).Price" data-game-id="@Model.Games.ElementAt(i).Id" data-discount-rate="@Model.Customer.Membership.MembershipType.DiscountRate" data-product-type="Game" class="btn btn-success btn-xs js-rent-game">Rent game</button></td>
-                    <td>@Html.ActionLink("Details", "Details", "Games", new { id = Model.Games.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                    <td class="text-center">@(counter++)</td>
-                    <td>@Model.Games.ElementAt(i).Name</td>
-                    <td>@Model.Games.ElementAt(i).GameGenre.Name</td>
-                    <td>@Model.Games.ElementAt(i).GamePlatform.Name</td>
-                    <td>@Model.Games.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                    <td>@Model.Games.ElementAt(i).NumberAvailable</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
 
 @section scripts
 {
@@ -96,23 +135,29 @@
 
             $("#movies").DataTable();
             $('#games').dataTable();
-            $("#games").hide();
-            $("#games_wrapper").hide()
 
             $('#js-moviesButton').click(function () {
-                $("#movies").show()
-                $("#games").hide()
-                $("#movies_wrapper").show()
-                $("#games_wrapper").hide()
+                $("#movies").show();
+                $("#games").hide();
+                $("#movies_wrapper").show();
+                $("#games_wrapper").hide();
             });
 
             $('#js-gamesButton').click(function () {
-                $("#games").show()
-                $("#movies").hide()
-                $("#games_wrapper").show()
-                $("#movies_wrapper").hide()
+                $("#games").show();
+                $("#movies").hide();
+                $("#games_wrapper").show();
+                $("#movies_wrapper").hide();
             });
         });
+
+        @if (Model.Movies.Any() && Model.Games.Any())
+        {
+            @:$(document).ready(function hideGamesTable() {
+                @:$("#games").hide();
+                @:$("#games_wrapper").hide();
+            @:});
+        }
 
         $(document).ready(function () {
             if (localStorage.getItem("Notification")) {

@@ -66,12 +66,13 @@ textarea {
     display: inline-block;
     top: 30px;
     right: 25px;
+    cursor: pointer;
 }
 
-.add-new-entity-button img {
-    width: 50px;
-    height: 50px;
-}
+    .add-new-entity-button img {
+        width: 50px;
+        height: 50px;
+    }
 
 .tooltip-text {
     visibility: hidden;
