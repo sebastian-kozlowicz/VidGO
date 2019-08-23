@@ -46,10 +46,6 @@ textarea {
     background: linear-gradient(180deg, #227f8e 120px, #fff 120px);
 }
 
-.dataTables_wrapper {
-    margin-top: 70px;
-}
-
 .table tr:nth-child(odd) {
     background-color: #f2f2f2
 }
@@ -59,6 +55,7 @@ textarea {
     color: #fff;
     font-weight: bold;
     letter-spacing: 1px;
+    margin-bottom: 70px;
 }
 
 .add-new-entity-button {

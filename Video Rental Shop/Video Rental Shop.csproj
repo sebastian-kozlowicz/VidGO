@@ -348,6 +348,7 @@
     <Content Include="Content\Custom\Login\img\login-icon.png" />
     <Content Include="Content\Custom\Registration\css\registration.css" />
     <Content Include="Content\Custom\Registration\img\user-icon.png" />
+    <Content Include="Content\Custom\Shared\css\entity-form.css" />
     <Content Include="Content\Custom\Shared\img\camera.png" />
     <Content Include="Content\Custom\Shared\img\gamepad.png" />
     <Content Include="Content\Custom\Shared\img\joystick.png" />

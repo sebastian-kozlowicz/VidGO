@@ -1,44 +1,49 @@
 ﻿@model Video_Rental_Shop.ViewModels.CustomerFormViewModel
+
+@Styles.Render("~/Content/Custom/Shared/css/entity-form.css")
+
 @{
     ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Title</h2>
+<div class="main-conntent-container">
+    <h2 class="table-title">@Model.Title</h2>
 
-@using (Html.BeginForm("Save", "Customers"))
-{
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Name)
-        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.Name, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Surname)
-        @Html.TextBoxFor(m => m.Customer.Surname, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.Surname, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Email, "e-mail")
-        @Html.TextBoxFor(m => m.Customer.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.Email, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Birthdate)
-        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:dd-MM-yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.Birthdate, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Balance, "Balance")
-        @Html.TextBoxFor(m => m.Customer.Balance, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.Balance, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Membership.MembershipTypeId, "Membership Type")
-        @Html.DropDownListFor(m => m.Customer.Membership.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
-    </div>
-    @Html.HiddenFor(m => m.Customer.Id)
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Save", "Customers"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Name)
+            @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Surname)
+            @Html.TextBoxFor(m => m.Customer.Surname, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Surname, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Email, "e-mail")
+            @Html.TextBoxFor(m => m.Customer.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Birthdate)
+            @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:dd-MM-yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Birthdate, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Balance, "Balance")
+            @Html.TextBoxFor(m => m.Customer.Balance, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Balance, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Membership.MembershipTypeId, "Membership Type")
+            @Html.DropDownListFor(m => m.Customer.Membership.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
+        </div>
+        @Html.HiddenFor(m => m.Customer.Id)
+        @Html.AntiForgeryToken()
 
-    <button type="submit" class="btn btn-primary">Save</button>
-}
+        <button type="submit">SAVE</button>
+    }
+</div>
