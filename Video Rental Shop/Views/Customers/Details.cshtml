@@ -5,17 +5,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name @Model.Surname</h2>
+@Styles.Render("~/Content/Custom/Shared/css/entity-form.css")
 
-<ul>
-    <li>Membership Type: @Model.MembershipType.Name</li>
-    @if (Model.Birthdate.HasValue)
-    {
-        <li>Birthdate: @Model.Birthdate.Value.ToShortDateString()</li>
-    }
-    else
-    {
-        <li>Release date: Not entered yet</li>
-    }
-    <li>E-mail: @Model.Email</li>
-</ul>
+<div class="main-content-container">
+    <h2 class="table-title">Customer's details</h2>
+
+    <div class="sub-content-container">
+        @using (Html.BeginForm("Edit", "Customers"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Surname)
+                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, "e-mail")
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", disabled = "disabled " })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Birthdate)
+                @Html.TextBoxFor(m => m.Birthdate, "{0:dd-MM-yyyy}", new { @class = "form-control", disabled = "disabled" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Balance, "Balance")
+                @Html.TextBoxFor(m => m.Balance, new { @class = "form-control", disabled = "disabled", Value = String.Format("{0:C}", Model.Balance) })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Membership.MembershipTypeId, "Membership Type")
+                @Html.TextBoxFor(m => m.Membership.MembershipType.Name, new { @class = "form-control", disabled = "disabled" })
+            </div>
+            @Html.HiddenFor(m => m.Id)
+            @Html.AntiForgeryToken()
+
+            <button type="submit">EDIT</button>
+        }
+    </div>
+</div>
