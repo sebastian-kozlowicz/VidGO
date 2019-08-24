@@ -37,7 +37,6 @@
             @Html.TextBoxFor(m => m.MovieGenre.Name, new { @class = "form-control", disabled = "disabled" })
         </div>
         @Html.HiddenFor(m => m.Id)
-        @Html.HiddenFor(m => m.NumberAvailable)
         @Html.AntiForgeryToken()
 
         <button type="submit">EDIT</button>
