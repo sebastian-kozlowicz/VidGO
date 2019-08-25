@@ -25,9 +25,9 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult Index()
         {
-            var games = _context.Games.Include(g => g.GameGenre).Include(g =>g.GamePlatform).ToList();
+            var games = _context.Games.Include(g => g.GameGenre).Include(g => g.GamePlatform).ToList();
 
-            if (User.IsInRole(RoleName.CanManageProducts))
+            if (User.IsInRole(RoleName.CanDoAllManipulationsOnEntities))
                 return View("List", games);
 
             return View("ReadOnlyList", games);
@@ -43,7 +43,7 @@ namespace Video_Rental_Shop.Controllers
             return View(game);
         }
 
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult New()
         {
             var genres = _context.GameGenres.ToList();
@@ -59,7 +59,7 @@ namespace Video_Rental_Shop.Controllers
             return View("GameForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Edit(int id)
         {
             var game = _context.Games.SingleOrDefault(c => c.Id == id);
@@ -80,7 +80,7 @@ namespace Video_Rental_Shop.Controllers
             return View("GameForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Delete(int id)
         {
             var game = _context.Games.SingleOrDefault(c => c.Id == id);
@@ -96,7 +96,7 @@ namespace Video_Rental_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Save(Game game)
         {
             if (!ModelState.IsValid)
@@ -106,7 +106,7 @@ namespace Video_Rental_Shop.Controllers
                     Game = new Game(),
                     Genres = _context.GameGenres.ToList(),
                     Platforms = _context.GamePlatforms.ToList()
-            };
+                };
 
                 return View("GameForm", viewModel);
             }

@@ -1,4 +1,5 @@
 ﻿@model Video_Rental_Shop.Models.RegisterViewModel
+@using Video_Rental_Shop.Enumerators;
 
 @Styles.Render("~/Content/Custom/Registration/css/registration.css")
 
@@ -28,10 +29,13 @@
         </div>
         <div class="form-group">
             <label class="registration-radio">
-                @Html.RadioButtonFor(m => m.IsManager, true) Manager
+                @Html.RadioButtonFor(m => m.UserRole, Video_Rental_Shop.Enumerators.Roles.Manager) Manager
             </label>
             <label class="registration-radio">
-                @Html.RadioButtonFor(m => m.IsManager, false) Guest
+                @Html.RadioButtonFor(m => m.UserRole, Video_Rental_Shop.Enumerators.Roles.Employee) Employee
+            </label>
+            <label class="registration-radio">
+                @Html.RadioButtonFor(m => m.UserRole, Video_Rental_Shop.Enumerators.Roles.Guest) Guest
             </label>
         </div>
         <div class="form-group">

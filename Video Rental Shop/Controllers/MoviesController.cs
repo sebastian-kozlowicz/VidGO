@@ -27,7 +27,7 @@ namespace Video_Rental_Shop.Controllers
         {
             var movies = _context.Movies.Include(m => m.MovieGenre).ToList();
 
-            if (User.IsInRole(RoleName.CanManageProducts))
+            if (User.IsInRole(RoleName.CanDoAllManipulationsOnEntities))
                 return View("List", movies);
 
             return View("ReadOnlyList", movies);
@@ -43,7 +43,7 @@ namespace Video_Rental_Shop.Controllers
             return View(movie);
         }
 
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult New()
         {
             var genres = _context.MovieGenres.ToList();
@@ -57,7 +57,7 @@ namespace Video_Rental_Shop.Controllers
             return View("MovieForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -76,7 +76,7 @@ namespace Video_Rental_Shop.Controllers
             return View("MovieForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Delete(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -92,7 +92,7 @@ namespace Video_Rental_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageProducts)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)

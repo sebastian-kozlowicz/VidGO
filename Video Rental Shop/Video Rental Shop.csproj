@@ -249,7 +249,7 @@
       <DependentUpon>201901051322247_MakeNumberInStockPropertyNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201901072132401_SeedUsers.cs" />
-    <Compile Include="Migrations\201901072132401_SeedUsers.Designer.cs">
+    <Compile Include="Migrations\201901072132401_SeedUsers.designer.cs">
       <DependentUpon>201901072132401_SeedUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201901131431493_AddNumberAvailableToMoviesTable.cs" />
@@ -293,7 +293,7 @@
       <DependentUpon>201901181052126_PopulateGamePlatformsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201901292104010_AddIsManagerToApplicationUser.cs" />
-    <Compile Include="Migrations\201901292104010_AddIsManagerToApplicationUser.Designer.cs">
+    <Compile Include="Migrations\201901292104010_AddIsManagerToApplicationUser.designer.cs">
       <DependentUpon>201901292104010_AddIsManagerToApplicationUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201906252103158_AddPriceToMoviesTable.cs" />
@@ -315,6 +315,14 @@
     <Compile Include="Migrations\201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.cs" />
     <Compile Include="Migrations\201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.Designer.cs">
       <DependentUpon>201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908251800375_DeleteIsManagerAndAddUserRoleToApplicationUser.cs" />
+    <Compile Include="Migrations\201908251800375_DeleteIsManagerAndAddUserRoleToApplicationUser.Designer.cs">
+      <DependentUpon>201908251800375_DeleteIsManagerAndAddUserRoleToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908251807159_DeleteAndSeedNewUsers.cs" />
+    <Compile Include="Migrations\201908251807159_DeleteAndSeedNewUsers.Designer.cs">
+      <DependentUpon>201908251807159_DeleteAndSeedNewUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -793,6 +801,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.resx">
       <DependentUpon>201908110953352_SetWillCascadeOnDeleteToTrueForCustomersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251800375_DeleteIsManagerAndAddUserRoleToApplicationUser.resx">
+      <DependentUpon>201908251800375_DeleteIsManagerAndAddUserRoleToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251807159_DeleteAndSeedNewUsers.resx">
+      <DependentUpon>201908251807159_DeleteAndSeedNewUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

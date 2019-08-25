@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Video_Rental_Shop.Models;
+using Video_Rental_Shop.Enumerators;
 
 namespace Video_Rental_Shop.Controllers
 {
@@ -152,16 +153,23 @@ namespace Video_Rental_Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IsManager = model.IsManager };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserRole = model.UserRole };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (model.IsManager)
+                    if (model.UserRole == Roles.Manager)
                     {
                         var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                         var roleManager = new RoleManager<IdentityRole>(roleStore);
-                        await roleManager.CreateAsync(new IdentityRole("CanManageProducts"));
-                        await UserManager.AddToRoleAsync(user.Id, "CanManageProducts");
+                        await roleManager.CreateAsync(new IdentityRole("CanDoAllManipulationsOnEntities"));
+                        await UserManager.AddToRoleAsync(user.Id, "CanDoAllManipulationsOnEntities");
+                    }
+                    else if (model.UserRole == Roles.Employee)
+                    {
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        await roleManager.CreateAsync(new IdentityRole("CanDoManipulationsOnEntitiesExceptDeletion"));
+                        await UserManager.AddToRoleAsync(user.Id, "CanDoManipulationsOnEntitiesExceptDeletion");
                     }
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

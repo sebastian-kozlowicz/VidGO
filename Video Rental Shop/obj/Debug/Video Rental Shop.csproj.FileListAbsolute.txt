@@ -446,3 +446,5 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Vi
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\VRS4\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.SetWillCascadeOnDeleteToTrueForCustomersTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddMembershipsTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.SetWillCascadeOnDeleteToTrueForCustomersTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.DeleteIsManagerAndAddUserRoleToApplicationUser.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.DeleteAndSeedNewUsers.resources

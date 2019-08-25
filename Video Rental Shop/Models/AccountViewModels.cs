@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Video_Rental_Shop.Enumerators;
 
 namespace Video_Rental_Shop.Models
 {
@@ -80,7 +81,7 @@ namespace Video_Rental_Shop.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public bool IsManager { get; set; }
+        public Roles UserRole { get; set; }
     }
 
     public class ResetPasswordViewModel
