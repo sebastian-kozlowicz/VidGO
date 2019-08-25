@@ -31,7 +31,11 @@ body {
     border: 2px solid #a94442;
 }
 
-.main-conntent-container {
+h3 {
+    font-weight: bold;
+}
+
+.main-content-container {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     border-radius: 10px;
     padding: 30px 40px 40px 40px;
@@ -83,3 +87,42 @@ body {
 .add-new-entity-button:hover .tooltip-text {
     visibility: visible;
 }
+
+#carousel {
+    margin: 0px auto;
+    width: auto;
+    background: #fff;
+    min-height: 250px;
+    text-align: center;
+    position: relative;
+    margin: -33px -40px -40px -40px;
+}
+
+.carousel {
+    padding: 20px 120px 20px 120px;
+}
+
+    .carousel p {
+        font-size: 16px;
+    }
+
+
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    background-color: gray;
+}
+
+.carousel-indicators .active {
+    width: 15px;
+    height: 15px;
+    background-color: gray;
+}
+
+.carousel-control:focus {
+    opacity: 0.5;
+}
+
+    .carousel-control:focus:hover {
+        opacity: 0.9;
+    }
