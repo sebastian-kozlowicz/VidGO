@@ -92,7 +92,6 @@ h3 {
     margin: 0px auto;
     width: auto;
     background: #fff;
-    min-height: 250px;
     text-align: center;
     position: relative;
     margin: -33px -40px -40px -40px;
@@ -102,10 +101,14 @@ h3 {
     padding: 20px 120px 20px 120px;
 }
 
-    .carousel p {
-        font-size: 16px;
-    }
+.carousel-inner > .item {
+    min-height:200px;
+    margin-bottom:50px;
+}
 
+.carousel p {
+    font-size: 16px;
+}
 
 .carousel-indicators li {
     width: 12px;

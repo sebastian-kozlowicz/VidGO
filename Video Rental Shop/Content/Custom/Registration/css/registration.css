@@ -13,7 +13,7 @@ img {
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    margin-top:-130px;
+    margin-top: -130px;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -37,12 +37,12 @@ img {
 }
 
 .registration-container {
-    position:relative;
+    position: relative;
     margin-top: 70px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 70px;
-    padding:60px 0px 40px 0px;
+    padding: 60px 0px 40px 0px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -82,6 +82,10 @@ input[type='radio']:checked:after {
     visibility: visible;
 }
 
+.registration-radio {
+    margin-right: 10px;
+}
+
 button {
     margin-top: 20px;
     border-radius: 20px;
@@ -95,10 +99,10 @@ button {
     transition: transform 80ms ease-in;
 }
 
-button:active {
-    transform: scale(0.95);
-}
+    button:active {
+        transform: scale(0.95);
+    }
 
-button:focus {
-    outline: none;
-}
+    button:focus {
+        outline: none;
+    }

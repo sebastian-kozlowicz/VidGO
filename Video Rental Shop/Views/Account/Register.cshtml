@@ -27,11 +27,11 @@
             @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            <label>
-                @Html.RadioButtonFor(m => m.IsManager, true, new { @class = "registration-radio" }) Manager
+            <label class="registration-radio">
+                @Html.RadioButtonFor(m => m.IsManager, true) Manager
             </label>
-            <label style="margin-left:10px">
-                @Html.RadioButtonFor(m => m.IsManager, false, new { @class = "registration-radio" }) Guest
+            <label class="registration-radio">
+                @Html.RadioButtonFor(m => m.IsManager, false) Guest
             </label>
         </div>
         <div class="form-group">
