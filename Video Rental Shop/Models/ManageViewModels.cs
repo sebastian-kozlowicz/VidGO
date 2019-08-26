@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Video_Rental_Shop.Enumerators;
 
 namespace Video_Rental_Shop.Models
 {
@@ -12,6 +13,8 @@ namespace Video_Rental_Shop.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string Email { get; set; }
+        public Roles UserRole { get; set; }
     }
 
     public class ManageLoginsViewModel

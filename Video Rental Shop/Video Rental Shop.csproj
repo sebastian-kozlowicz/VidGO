@@ -355,6 +355,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\Login\css\login.css" />
     <Content Include="Content\Custom\Login\img\login-icon.png" />
+    <Content Include="Content\Custom\Manage\css\manage.css" />
     <Content Include="Content\Custom\Registration\css\registration.css" />
     <Content Include="Content\Custom\Registration\img\user-icon.png" />
     <Content Include="Content\Custom\Shared\css\entity-form.css" />

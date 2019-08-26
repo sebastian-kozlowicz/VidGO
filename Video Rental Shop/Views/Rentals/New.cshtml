@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="main-conntent-container">
+<div class="main-content-container">
 
     <div class="row">
         <div class="col-sm-2 col-md-2 col-lg-2">
@@ -134,6 +134,9 @@
 
             $("#movies").DataTable();
             $('#games').dataTable();
+
+            document.getElementById("movies_wrapper").style.marginTop = "70px";
+            document.getElementById("games_wrapper").style.marginTop = "70px";
 
             $('#js-moviesButton').click(function () {
                 $("#movies").show();

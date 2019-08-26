@@ -37,6 +37,8 @@
             <label class="registration-radio">
                 @Html.RadioButtonFor(m => m.UserRole, Video_Rental_Shop.Enumerators.Roles.Guest) Guest
             </label>
+            <br />
+            @Html.ValidationMessageFor(m => m.UserRole, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             <button id="signUp">SIGN UP</button>

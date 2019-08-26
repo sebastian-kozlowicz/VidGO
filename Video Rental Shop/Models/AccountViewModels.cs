@@ -81,6 +81,7 @@ namespace Video_Rental_Shop.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required(ErrorMessage = "User role cannot be not selected")]
         public Roles UserRole { get; set; }
     }
 

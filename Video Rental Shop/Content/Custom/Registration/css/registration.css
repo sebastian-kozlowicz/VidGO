@@ -38,11 +38,8 @@ img {
 
 .registration-container {
     position: relative;
-    margin-top: 70px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 70px;
-    padding: 60px 0px 40px 0px;
+    margin: 70px auto 70px auto;
+    padding: 60px 0 40px 0;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -84,6 +81,11 @@ input[type='radio']:checked:after {
 
 .registration-radio {
     margin-right: 10px;
+    cursor: pointer;
+}
+
+.registration-radio input{
+    cursor: pointer;
 }
 
 button {
