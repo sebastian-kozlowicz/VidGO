@@ -4,42 +4,50 @@
     ViewBag.Title = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Movies</h2>
 
-@if (!Model.Any())
-{
-    <p>We don't have any movies yet.</p>
-}
-else
-{
-    <table id="movies" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th class="text-center" style="width:5%">Options</th>
-                <th class="text-center" style="width:5%">#</th>
-                <th>Movie</th>
-                <th>Genre</th>
-                <th>Release Date</th>
-                <th>Number Available</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Count(); i++)
-            {
-            <tr>
-                <td>@Html.ActionLink("Details", "Details", "Movies", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs " })</td>
-                <td class="text-center">@(i + 1)</td>
-                <td>@Model.ElementAt(i).Name</td>
-                <td>@Model.ElementAt(i).MovieGenre.Name</td>
-                <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                <td>@Model.ElementAt(i).NumberAvailable</td>
-                <td>@Model.ElementAt(i).Price$</td>
-            </tr>
-            }
-        </tbody>
-    </table>
-}
+<div class="main-content-container">
+    @if (Model.Any())
+    {
+        <h2 class="table-title">Movies</h2>
+    }
+    else
+    {
+        <h2 class="table-title">We don't have any movies yet.</h2>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="table-container">
+            <table id="movies" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width:5%">Options</th>
+                        <th class="text-center" style="width:5%">#</th>
+                        <th>Movie</th>
+                        <th>Genre</th>
+                        <th>Release Date</th>
+                        <th>Number Available</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <tr>
+                            <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                            <td class="text-center">@(i + 1)</td>
+                            <td>@Model.ElementAt(i).Name</td>
+                            <td>@Model.ElementAt(i).MovieGenre.Name</td>
+                            <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                            <td>@Model.ElementAt(i).NumberAvailable</td>
+                            <td>@Model.ElementAt(i).Price$</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
 
 @section scripts
 {
