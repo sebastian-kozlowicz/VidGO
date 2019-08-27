@@ -1,5 +1,5 @@
 ﻿@model Video_Rental_Shop.Models.RegisterViewModel
-@using Video_Rental_Shop.Enumerators;
+@using Video_Rental_Shop.Models;
 
 @Styles.Render("~/Content/Custom/Registration/css/registration.css")
 
@@ -28,7 +28,7 @@
             @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @if (this.User.IsInRole("CanDoAllManipulationsOnEntities"))
+            @if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities))
             {
                 <label class="registration-radio">
                     @Html.RadioButtonFor(m => m.UserRole, Video_Rental_Shop.Enumerators.Roles.Manager) Manager
@@ -68,7 +68,7 @@
 
     <script>
         $(document).ready(function () {
-            $("input[type='radio']:disabled").parent().addClass("cursor-not-allowed");
+            $("input[type='radio']:disabled").parent().css("cursor", "not-allowed");
         });
     </script>
 }

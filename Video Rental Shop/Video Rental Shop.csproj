@@ -727,6 +727,7 @@
     <Content Include="Views\Games\ReadOnlyList.cshtml" />
     <Content Include="Views\Games\Details.cshtml" />
     <Content Include="Views\Rentals\AllRentedProducts.cshtml" />
+    <Content Include="Views\Movies\ListWithoutDeletions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

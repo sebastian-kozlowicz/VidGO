@@ -88,10 +88,6 @@ input[type='radio']:checked:after {
         cursor: pointer;
     }
 
-.cursor-not-allowed {
-    cursor: not-allowed;
-}
-
 button {
     margin-top: 20px;
     border-radius: 20px;
