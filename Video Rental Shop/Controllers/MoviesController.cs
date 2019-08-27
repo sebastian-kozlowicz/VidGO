@@ -45,7 +45,7 @@ namespace Video_Rental_Shop.Controllers
             return View(movie);
         }
 
-        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult New()
         {
             var genres = _context.MovieGenres.ToList();
@@ -59,7 +59,7 @@ namespace Video_Rental_Shop.Controllers
             return View("MovieForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -94,7 +94,7 @@ namespace Video_Rental_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
