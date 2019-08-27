@@ -1,4 +1,5 @@
 ﻿@model Video_Rental_Shop.Models.Movie
+@using Video_Rental_Shop.Models
 
 @Styles.Render("~/Content/Custom/Shared/css/entity-form.css")
 
@@ -39,6 +40,9 @@
         @Html.HiddenFor(m => m.Id)
         @Html.AntiForgeryToken()
 
-        <button type="submit">EDIT</button>
+        if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) || this.User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
+        {
+            <button type="submit">EDIT</button>
+        }
     }
 </div>
