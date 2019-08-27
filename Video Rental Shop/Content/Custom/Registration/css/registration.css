@@ -84,8 +84,12 @@ input[type='radio']:checked:after {
     cursor: pointer;
 }
 
-.registration-radio input{
-    cursor: pointer;
+    .registration-radio input {
+        cursor: pointer;
+    }
+
+.cursor-not-allowed {
+    cursor: not-allowed;
 }
 
 button {
