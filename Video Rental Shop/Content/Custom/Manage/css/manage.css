@@ -17,10 +17,33 @@
     cursor: default;
 }
 
+.table-title {
+    width: 400px;
+    left: -50px;
+    position: relative;
+}
+
+#password-change-button {
+    display: block;
+    width:auto;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    border: 1px solid #2aa1c0;
+    background-color: #2aa1c0;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    transition: transform 80ms ease-in;
+}
+
 button {
     margin-top: 20px;
-    margin-left:13px;
-    width:130px;
+    margin-left: 13px;
+    width: 130px;
     border-radius: 20px;
     border: 1px solid #2aa1c0;
     background-color: #2aa1c0;
@@ -28,7 +51,6 @@ button {
     font-size: 12px;
     font-weight: bold;
     padding: 5px;
-    letter-spacing: 1px;
     transition: transform 80ms ease-in;
 }
 
@@ -39,3 +61,9 @@ button {
     button:focus {
         outline: none;
     }
+
+.validation-summary-errors {
+    width: 330px;
+    left: -20px;
+    position: relative;
+}

@@ -21,12 +21,12 @@
         </div>
         @if (Model.HasPassword)
         {
-            <button onclick="location.href='@Url.Action("ChangePassword", "Manage")'"> Change password</button>
+            <button onclick="location.href='@Url.Action("ChangePassword", "Manage")'">CHANGE PASSWORD</button>
         }
         else
         {
-            <button onclick="location.href='@Url.Action("SetPassword", "Manage")'"> SetPassword</button>
+            <button onclick="location.href='@Url.Action("SetPassword", "Manage")'">SET PASSWORD</button>
         }
-        <button onclick="location.href='@Url.Action("Register", "Account")'">Create new account</button>
+        <button onclick="location.href='@Url.Action("Register", "Account")'">CREATE NEW ACCOUNT</button>
     </div>
 </div>
