@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Video_Rental_Shop.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content-container">
+
+    <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-1">
+            <a class="add-new-entity-button" href='@Url.Action("New", "Games")'>
+                <img src='@Url.Content("~/Content/Custom/Shared/img/gamepad.png")' />
+                <span class="tooltip-text">Add new game</span>
+            </a>
+        </div>
+
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            @if (Model.Any())
+            {
+                <h2 class="table-title">Games</h2>
+            }
+            else
+            {
+                <h2 class="table-title">We don't have any games yet.</h2>
+            }
+        </div>
+    </div>
+
+
+    @if (Model.Any())
+    {
+        <div class="table-container">
+            <table id="games" class="table table-bordered table-hover">
+                <thead>
+                    <tr style="display:none">
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="text-center" style="width:5%">Options</th>
+                        <th class="text-center" style="width:5%">#</th>
+                        <th>Game</th>
+                        <th>Genre</th>
+                        <th>Platform</th>
+                        <th>Release Date</th>
+                        <th>Number Available</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <tr>
+                            <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                            <td style="width:5%">@Html.ActionLink("Edit", "Edit", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-warning btn-xs" })</td>
+                            <td class="text-center">@(i + 1)</td>
+                            <td>@Model.ElementAt(i).Name</td>
+                            <td>@Model.ElementAt(i).GameGenre.Name</td>
+                            <td>@Model.ElementAt(i).GamePlatform.Name</td>
+                            <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                            <td>@Model.ElementAt(i).NumberAvailable</td>
+                            <td>@Model.ElementAt(i).Price$</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#games").DataTable();
+        });
+    </script>
+}

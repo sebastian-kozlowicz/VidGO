@@ -29,6 +29,8 @@ namespace Video_Rental_Shop.Controllers
 
             if (User.IsInRole(RoleName.CanDoAllManipulationsOnEntities))
                 return View("List", games);
+            else if (User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
+                return View("ListWithoutDeletions", games);
 
             return View("ReadOnlyList", games);
         }
