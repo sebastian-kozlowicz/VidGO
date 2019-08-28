@@ -105,7 +105,7 @@ namespace Video_Rental_Shop.Controllers
             {
                 var viewModel = new GameFormViewModel
                 {
-                    Game = new Game(),
+                    Game = game,
                     Genres = _context.GameGenres.ToList(),
                     Platforms = _context.GamePlatforms.ToList()
                 };
@@ -125,7 +125,9 @@ namespace Video_Rental_Shop.Controllers
                 gameInDb.Name = game.Name;
                 gameInDb.ReleaseDate = game.ReleaseDate;
                 gameInDb.NumberInStock = game.NumberInStock;
+                gameInDb.Price = game.Price;
                 gameInDb.GameGenreId = game.GameGenreId;
+                gameInDb.GamePlatformId = game.GamePlatformId;
             }
 
             _context.SaveChanges();
