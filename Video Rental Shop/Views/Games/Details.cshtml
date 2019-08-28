@@ -45,6 +45,9 @@
         @Html.HiddenFor(m => m.Id)
         @Html.AntiForgeryToken()
 
-        <button type="submit">EDIT</button>
+        if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) || this.User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
+        {
+            <button type="submit">EDIT</button>
+        }
     }
 </div>
