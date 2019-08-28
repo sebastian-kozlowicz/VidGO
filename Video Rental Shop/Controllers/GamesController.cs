@@ -45,7 +45,7 @@ namespace Video_Rental_Shop.Controllers
             return View(game);
         }
 
-        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult New()
         {
             var genres = _context.GameGenres.ToList();
