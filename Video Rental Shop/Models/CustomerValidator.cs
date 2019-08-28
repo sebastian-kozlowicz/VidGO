@@ -35,9 +35,8 @@ namespace Video_Rental_Shop.Models
                     if (c.Membership.MembershipTypeId != MembershipType.PayAsYouGo)
                     {
                         DateTime Current = DateTime.Today;
-                        var age = Current.Year - Convert.ToDateTime(c.Birthdate).Year;
 
-                        if (age < 18)
+                        if (c.Birthdate > DateTime.Now.AddYears(-18))
                             context.AddFailure(new ValidationFailure("Birthdate", "Customer should be at least 18 years old to go on a membership"));
                     }
                 });
