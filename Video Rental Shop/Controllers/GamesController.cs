@@ -61,7 +61,7 @@ namespace Video_Rental_Shop.Controllers
             return View("GameForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Edit(int id)
         {
             var game = _context.Games.SingleOrDefault(c => c.Id == id);
@@ -98,7 +98,7 @@ namespace Video_Rental_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Save(Game game)
         {
             if (!ModelState.IsValid)
