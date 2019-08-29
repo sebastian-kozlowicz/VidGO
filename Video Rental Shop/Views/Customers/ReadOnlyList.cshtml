@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Video_Rental_Shop.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content-container">
+    @if (Model.Any())
+    {
+        <h2 class="table-title">Customers</h2>
+    }
+    else
+    {
+        <h2 class="table-title">We don't have any customers yet.</h2>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="table-container">
+            <table id="customers" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width:5%">Options</th>
+                        <th class="text-center" style="width:5%">Rentals</th>
+                        <th class="text-center" style="width:5%">#</th>
+                        <th>Customer</th>
+                        <th>Membership Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink("Details", "Details", "Customers", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs", @style = "margin:0 auto;" })</td>
+                            <td>@Html.ActionLink("History", "RentedProducts", "Rentals", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-success btn-xs" })</td>
+                            <td class="text-center">@(i + 1)</td>
+                            <td>@Model.ElementAt(i).Name @Model.ElementAt(i).Surname</td>
+                            <td>@Model.ElementAt(i).Membership.MembershipType.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers").DataTable();
+        });
+    </script>
+}
