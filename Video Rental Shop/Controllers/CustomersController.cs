@@ -45,6 +45,7 @@ namespace Video_Rental_Shop.Controllers
             return View(customer);
         }
 
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult New()
         {
             var viewModel = new CustomerFormViewModel
@@ -56,6 +57,7 @@ namespace Video_Rental_Shop.Controllers
             return View("CustomerForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -74,7 +76,7 @@ namespace Video_Rental_Shop.Controllers
             return View("CustomerForm", viewModel);
         }
 
-
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities)]
         public ActionResult Delete(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -90,6 +92,7 @@ namespace Video_Rental_Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
