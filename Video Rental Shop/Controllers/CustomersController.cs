@@ -27,7 +27,12 @@ namespace Video_Rental_Shop.Controllers
         {
             var customers = _context.Customers.Include(c => c.Membership.MembershipType).ToList();
 
-            return View(customers);
+            if (User.IsInRole(RoleName.CanDoAllManipulationsOnEntities))
+                return View("List", customers);
+            else if (User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
+                return View("ListWithoutDeletions", customers);
+
+            return View("ReadOnlyList", customers);
         }
 
         public ActionResult Details(int id)

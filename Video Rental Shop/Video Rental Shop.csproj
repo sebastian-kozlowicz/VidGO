@@ -704,7 +704,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\List.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\List.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -729,6 +729,7 @@
     <Content Include="Views\Rentals\AllRentedProducts.cshtml" />
     <Content Include="Views\Movies\ListWithoutDeletions.cshtml" />
     <Content Include="Views\Games\ListWithoutDeletions.cshtml" />
+    <Content Include="Views\Customers\ListWithoutDeletions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
