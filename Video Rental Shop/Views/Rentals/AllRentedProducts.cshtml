@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Video_Rental_Shop.Models.Rental>
+@using Video_Rental_Shop.Models
 
 @{
     ViewBag.Title = "AllRentedProducts";
@@ -25,7 +26,14 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <th colspan="2" class="text-center" style="width:5%">Options</th>
+                        @if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) || this.User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
+                        {
+                            <th colspan="2" class="text-center" style="width:5%">Options</th>
+                        }
+                        else
+                        {
+                            <th class="text-center" style="width:5%">Options</th>
+                        }
                         <th class="text-center" style="width:5%">#</th>
                         <th>Customer</th>
                         <th>Product Title</th>
@@ -48,15 +56,17 @@
                             return "Game";
                         }
                         <tr>
-                            @if (row.DateReturned == null)
+                            @if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) || this.User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
                             {
-                                <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = row.Id, productType = productType(), redirectTo = "AllRentedProducts" }, new { @class = "btn btn-success btn-xs" })</td>
+                                if (row.DateReturned == null)
+                                {
+                                    <td style="width:5%">@Html.ActionLink("Return", "ReturnProduct", "Rentals", new { rentalId = row.Id, productType = productType(), redirectTo = "AllRentedProducts" }, new { @class = "btn btn-success btn-xs" })</td>
+                                }
+                                else
+                                {
+                                    <td style="width:5%"><button class="btn btn-success btn-xs">Return</button> </td>
+                                }
                             }
-                            else
-                            {
-                                <td style="width:5%"><button class="btn btn-success btn-xs">Return</button> </td>
-                            }
-
                             @if (row.MovieId != null)
                             {
                                 <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = row.Movie.Id }, new { @class = "btn btn-info btn-xs" })</td>
