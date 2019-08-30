@@ -5,12 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="main-content-container">
+@{
+    bool IsMoviesAreNotAvailable = Model.Movies.All(m => m.NumberAvailable <= 0);
+    bool IsGamesAreNotAvailable = Model.Games.All(g => g.NumberAvailable <= 0);
+}
 
+<div class="main-content-container">
     <div class="row">
         <div class="col-sm-2 col-md-2 col-lg-2">
             <div class="row">
-                @if (Model.Movies.Any())
+                @if (Model.Movies.Any() && !IsMoviesAreNotAvailable)
                 {
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <a id="js-moviesButton" class="add-new-entity-button">
@@ -19,7 +23,7 @@
                         </a>
                     </div>
                 }
-                @if (Model.Games.Any())
+                @if (Model.Games.Any() && !IsGamesAreNotAvailable)
                 {
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <a id="js-gamesButton" class="add-new-entity-button">
@@ -32,18 +36,22 @@
         </div>
 
         <div class="col-xs-8 col-sm-8 col-md-8">
-            @if (Model.Movies.Any() || Model.Games.Any())
+            @if (!Model.Movies.Any() || !Model.Games.Any())
+            {
+                <h2 class="table-title">We don't have any products yet.</h2>
+            }
+            else if (Model.Movies.Any() && !IsMoviesAreNotAvailable || Model.Games.Any() && !IsGamesAreNotAvailable)
             {
                 <h2 class="table-title">New Rental for @Model.Customer.Name @Model.Customer.Surname</h2>
             }
             else
             {
-                <h2 class="table-title">We don't have any products yet.</h2>
+                <h2 class="table-title">No products currently available</h2>
             }
         </div>
     </div>
 
-    @if (Model.Movies.Any())
+    @if (Model.Movies.Any() && !IsMoviesAreNotAvailable)
     {
         <table id="movies" class="table table-bordered table-hover">
             <thead>
@@ -84,7 +92,7 @@
         </table>
     }
 
-    @if (Model.Games.Any())
+    @if (Model.Games.Any() && !IsGamesAreNotAvailable)
     {
         <table id="games" class="table table-bordered table-hover">
             <thead>
@@ -135,8 +143,12 @@
             $("#movies").DataTable();
             $('#games').dataTable();
 
-            document.getElementById("movies_wrapper").style.marginTop = "70px";
-            document.getElementById("games_wrapper").style.marginTop = "70px";
+            if ($("#movies_wrapper").length) {
+                document.getElementById("movies_wrapper").style.marginTop = "70px";
+            }
+            if ($("#games_wrapper").length) {
+                document.getElementById("games_wrapper").style.marginTop = "70px";
+            }
 
             $('#js-moviesButton').click(function () {
                 $("#movies").show();
@@ -153,7 +165,7 @@
             });
         });
 
-        @if (Model.Movies.Any() && Model.Games.Any())
+        @if (Model.Movies.Any() && !IsMoviesAreNotAvailable)
         {
             @:$(document).ready(function hideGamesTable() {
                 @:$("#games").hide();
