@@ -24,6 +24,7 @@ namespace Video_Rental_Shop.Controllers
             _context.Dispose();
         }
 
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult New(int id)
         {
             var customer = _context.Customers.Include(c => c.Membership.MembershipType).SingleOrDefault(c => c.Id == id);
@@ -48,6 +49,7 @@ namespace Video_Rental_Shop.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         [Route("Rentals/Save/{customerId}/{Id}/{productType}")]
         public ActionResult Save(int customerId, int Id, string productType)
         {
@@ -99,7 +101,7 @@ namespace Video_Rental_Shop.Controllers
 
         public ActionResult RentedProducts(int id)
         {
-            var rental = _context.Rentals
+            var rentals = _context.Rentals
                 .Include(r => r.Movie)
                 .Include(r => r.Customer)
                 .Include(r => r.Movie.MovieGenre)
@@ -108,7 +110,7 @@ namespace Video_Rental_Shop.Controllers
                 .Where(c => c.CustomerId == id)
                 .ToList();
 
-            return View(rental);
+            return View(rentals);
         }
 
         public ActionResult AllRentedProducts()
@@ -124,6 +126,7 @@ namespace Video_Rental_Shop.Controllers
             return View(rentals);
         }
 
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         [Route("Rentals/ReturnProduct/{rentalId}/{productType}/{redirectTo}")]
         public ActionResult ReturnProduct(int rentalId, string productType, string redirectTo)
         {
@@ -157,6 +160,7 @@ namespace Video_Rental_Shop.Controllers
             return RedirectToAction("AllRentedProducts", "Rentals");
         }
 
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         [Route("Rentals/TopUpBalance/{customerId}/{depositAmount:decimal}")]
         public ActionResult TopUpBalance(int customerId, decimal depositAmount)
         {
