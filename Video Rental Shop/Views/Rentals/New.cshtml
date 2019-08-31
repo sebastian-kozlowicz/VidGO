@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-xs-8 col-sm-8 col-md-8">
-            @if (!Model.Movies.Any() || !Model.Games.Any())
+            @if (!Model.Movies.Any() && !Model.Games.Any())
             {
                 <h2 class="table-title">We don't have any products yet.</h2>
             }
