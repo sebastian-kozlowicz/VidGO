@@ -56,8 +56,15 @@
                             <td>@Model.ElementAt(i).Name</td>
                             <td>@Model.ElementAt(i).MovieGenre.Name</td>
                             <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                            <td>@Model.ElementAt(i).NumberAvailable</td>
-                            <td>@Model.ElementAt(i).Price$</td>
+                            @if (Model.ElementAt(i).NumberAvailable > 0)
+                            {
+                                <td>@Model.ElementAt(i).NumberAvailable</td>
+                            }
+                            else
+                            {
+                                <td>0</td>
+                            }
+                            <td>$@Model.ElementAt(i).Price</td>
                         </tr>
                     }
                 </tbody>
