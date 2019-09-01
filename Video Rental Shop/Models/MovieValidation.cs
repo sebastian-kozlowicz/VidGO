@@ -15,7 +15,7 @@ namespace Video_Rental_Shop.Models
 
             RuleFor(m => m.ReleaseDate).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Release Date field is required")
-                .LessThan(c => DateTime.Now).WithMessage($"Release Date must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}");
+                .LessThan(c => DateTime.Now).WithMessage($"Release Date must be less than {((DateTime.Now).AddDays(1)).ToString("dd/MM/yyyy")}");
 
             RuleFor(m => m.NumberInStock).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Number In Stock field is required")

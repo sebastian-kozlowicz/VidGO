@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Price, "Price")
-            @Html.TextBoxFor(m => m.Price, new { @class = "form-control", disabled = "disabled" })
+            @Html.TextBoxFor(m => m.Price, "{0:c}", new { @class = "form-control", disabled = "disabled" })
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.GameGenreId, "Genre")
