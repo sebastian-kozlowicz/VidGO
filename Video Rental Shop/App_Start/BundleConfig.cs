@@ -29,7 +29,7 @@ namespace Video_Rental_Shop
 
             bundles.Add(new ScriptBundle("~/bundles/jquery.datatables").Include(
                      "~/Scripts/datatables/jquery.datatables.js",
-                     "~/Scripts/datatables/datatables.bootstrap.js")); ;
+                     "~/Scripts/datatables/datatables.bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                   "~/Scripts/toastr.js"));
