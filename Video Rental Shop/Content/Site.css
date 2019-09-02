@@ -97,7 +97,6 @@ h3 {
 
 .negative-number-available-concealment {
     position: relative;
-    display: inline-block;
     cursor: pointer;
     color: #a94442;
 }

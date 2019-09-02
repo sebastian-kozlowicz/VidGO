@@ -25,9 +25,10 @@
             @Html.LabelFor(m => m.NumberInStock, "Number In Stock")
             @Html.TextBoxFor(m => m.NumberInStock, new { @class = "form-control", disabled = "disabled" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.NumberAvailable, "Number Available")
+        <div class="form-group @if(Model.NumberAvailable < 0) { <text>negative-number-available-concealment</text> } ">
+            @Html.LabelFor(m => m.NumberAvailable, Model.NumberAvailable < 0 ? "Number Available*" : "Number Available")
             @Html.TextBoxFor(m => m.NumberAvailable, new { @class = "form-control", disabled = "disabled", Value = (Model.NumberAvailable < 0 ? 0 : Model.NumberAvailable) })
+            <span class="tooltip-text">@Math.Abs(Model.NumberAvailable.Value) @(Model.NumberAvailable.Value == -1 ? "copy is" : "copies are") at the customer's house</span>
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Price, "Price")
