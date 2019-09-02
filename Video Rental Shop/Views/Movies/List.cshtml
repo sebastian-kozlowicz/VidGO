@@ -64,7 +64,11 @@
                             }
                             else
                             {
-                                <td>0</td>
+                                <td>
+                                    <span class="negative-number-available-concealment">
+                                        0*<span class="tooltip-text">@Math.Abs(Model.ElementAt(i).NumberAvailable.Value) copies are at the customer's house</span>
+                                    </span>
+                                </td>
                             }
                             <td>$@Model.ElementAt(i).Price</td>
                         </tr>
