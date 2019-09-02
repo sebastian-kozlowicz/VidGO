@@ -51,25 +51,29 @@
                 <tbody>
                     @for (int i = 0; i < Model.Count(); i++)
                     {
-                        <tr>
-                            <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
-                            <td style="width:5%">@Html.ActionLink("Edit", "Edit", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-warning btn-xs" })</td>
-                            <td style="width:5%"><button data-game-id="@Model.ElementAt(i).Id" class="btn btn-danger btn-xs js-delete">Delete</button></td>
-                            <td class="text-center">@(i + 1)</td>
-                            <td>@Model.ElementAt(i).Name</td>
-                            <td>@Model.ElementAt(i).GameGenre.Name</td>
-                            <td>@Model.ElementAt(i).GamePlatform.Name</td>
-                            <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                            @if (Model.ElementAt(i).NumberAvailable > 0)
-                            {
-                                <td>@Model.ElementAt(i).NumberAvailable</td>
-                            }
-                            else
-                            {
-                                <td>0</td>
-                            }
-                            <td>$@Model.ElementAt(i).Price</td>
-                        </tr>
+                    <tr>
+                        <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs" })</td>
+                        <td style="width:5%">@Html.ActionLink("Edit", "Edit", "Games", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-warning btn-xs" })</td>
+                        <td style="width:5%"><button data-game-id="@Model.ElementAt(i).Id" class="btn btn-danger btn-xs js-delete">Delete</button></td>
+                        <td class="text-center">@(i + 1)</td>
+                        <td>@Model.ElementAt(i).Name</td>
+                        <td>@Model.ElementAt(i).GameGenre.Name</td>
+                        <td>@Model.ElementAt(i).GamePlatform.Name</td>
+                        <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
+                        @if (Model.ElementAt(i).NumberAvailable >= 0)
+                        {
+                            <td>@Model.ElementAt(i).NumberAvailable</td>
+                        }
+                        else
+                        {
+                            <td>
+                                <span class="negative-number-available-concealment">
+                                    0*<span class="tooltip-text">@Math.Abs(Model.ElementAt(i).NumberAvailable.Value) @(Model.ElementAt(i).NumberAvailable.Value == -1 ? "copy is" : "copies are") at the customer's house</span>
+                                </span>
+                            </td>
+                        }
+                        <td>$@Model.ElementAt(i).Price</td>
+                    </tr>
                     }
                 </tbody>
             </table>

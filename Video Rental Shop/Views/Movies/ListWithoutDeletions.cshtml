@@ -56,7 +56,7 @@
                             <td>@Model.ElementAt(i).Name</td>
                             <td>@Model.ElementAt(i).MovieGenre.Name</td>
                             <td>@Model.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
-                            @if (Model.ElementAt(i).NumberAvailable > 0)
+                            @if (Model.ElementAt(i).NumberAvailable >= 0)
                             {
                                 <td>@Model.ElementAt(i).NumberAvailable</td>
                             }
@@ -64,7 +64,7 @@
                             {
                                 <td>
                                     <span class="negative-number-available-concealment">
-                                        0*<span class="tooltip-text">@Math.Abs(Model.ElementAt(i).NumberAvailable.Value) copies are at the customer's house</span>
+                                        0*<span class="tooltip-text">@Math.Abs(Model.ElementAt(i).NumberAvailable.Value) @(Model.ElementAt(i).NumberAvailable.Value == -1 ? "copy is" : "copies are") at the customer's house</span>
                                     </span>
                                 </td>
                             }
