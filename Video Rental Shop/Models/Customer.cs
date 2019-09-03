@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
 using FluentValidation.Attributes;
 using System.Web.Mvc;
+using Video_Rental_Shop.Models.Validators;
+
 
 namespace Video_Rental_Shop.Models
 {
@@ -15,7 +16,6 @@ namespace Video_Rental_Shop.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        [DataType(DataType.Currency)]
         public decimal Balance { get; set; }
         public DateTime? Birthdate { get; set; }
         public Membership Membership { get; set; }

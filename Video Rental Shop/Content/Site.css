@@ -31,10 +31,6 @@ body {
     border: 2px solid #a94442;
 }
 
-h3 {
-    font-weight: bold;
-}
-
 .main-content-container {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     border-radius: 10px;
@@ -47,8 +43,8 @@ h3 {
         margin-top: 70px
     }
 
-.table tr:nth-child(odd) {
-    background-color: #f2f2f2
+.table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
 }
 
 .table-title {
@@ -108,44 +104,6 @@ h3 {
         margin-left: 5px;
     }
 
-#carousel {
-    margin: 0px auto;
-    width: auto;
-    background: #fff;
-    text-align: center;
-    position: relative;
-    margin: -33px -40px -40px -40px;
+.layout-footer {
+    color: #fff;
 }
-
-.carousel {
-    padding: 20px 120px 20px 120px;
-}
-
-.carousel-inner > .item {
-    min-height: 200px;
-    margin-bottom: 50px;
-}
-
-.carousel p {
-    font-size: 16px;
-}
-
-.carousel-indicators li {
-    width: 12px;
-    height: 12px;
-    background-color: gray;
-}
-
-.carousel-indicators .active {
-    width: 15px;
-    height: 15px;
-    background-color: gray;
-}
-
-.carousel-control:focus {
-    opacity: 0.5;
-}
-
-    .carousel-control:focus:hover {
-        opacity: 0.9;
-    }

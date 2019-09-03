@@ -1,4 +1,6 @@
-﻿@{
+﻿@Styles.Render("~/Content/Custom/Home/css/home.css")
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -12,20 +14,77 @@
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <h3>About</h3>
-                    <p>
-                        VidGO is a video rental management application designed for usage of a rental store employee.<br />
-                        VidGO is a video rental management application designed for usage of a rental store employee.<br />
-                        VidGO is a video rental management application designed for usage of a rental store employee.<br />
-
-                    </p>
+                    <ul>
+                        <li>VidGO is a video rental management application designed for usage of a rental store staff members.</li>
+                        <li>Based on user account type you get accesss to different parts of application to perform actions based on your privileges.</li>
+                        <li>Each user of any user type even anonymous is allowed to create guest account that gives you only read/view permition.</li>
+                    </ul>
                 </div>
                 <div class="item">
                     <h3>Account role types</h3>
-                    <p>Will be filled in the future</p>
+                    <table class="table user-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" rowspan="2">Account user type</th>
+                                <th class="text-center" colspan="3">Permitions</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Read</th>
+                                <th class="text-center">Write</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Manager</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>X</td>
+                            </tr>
+                            <tr>
+                                <td>Employee</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guest</td>
+                                <td>X</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="item">
                     <h3>Login data</h3>
-                    <p>Will be filled in the future</p>
+                    <p class="text-center">You can try out this application by simply log in on one of below demo accounts!</p>
+                    <table id="user-login-data-table" class="table user-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Account user type</th>
+                                <th class="text-center">Login</th>
+                                <th class="text-center">Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Manager</td>
+                                <td>manager@demo.com</td>
+                                <td>Manager1@@</td>
+                            </tr>
+                            <tr>
+                                <td>Employee</td>
+                                <td>employee@demo.com</td>
+                                <td>Employee1@@</td>
+                            </tr>
+                            <tr>
+                                <td>Guest</td>
+                                <td>guest@demo.com</td>
+                                <td>Guest1@@</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!--/.Slides-->
