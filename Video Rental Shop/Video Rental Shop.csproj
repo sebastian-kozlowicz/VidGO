@@ -264,9 +264,9 @@
     <Compile Include="Migrations\201901131815211_AddGames.Designer.cs">
       <DependentUpon>201901131815211_AddGames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901132130226_AddDomainModelIdsToRentalTable.cs" />
-    <Compile Include="Migrations\201901132130226_AddDomainModelIdsToRentalTable.Designer.cs">
-      <DependentUpon>201901132130226_AddDomainModelIdsToRentalTable.cs</DependentUpon>
+    <Compile Include="Migrations\201901132130226_AddNavigationPropertiesToRentalsTable.cs" />
+    <Compile Include="Migrations\201901132130226_AddNavigationPropertiesToRentalsTable.Designer.cs">
+      <DependentUpon>201901132130226_AddNavigationPropertiesToRentalsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201901171456253_RenameGenresToMovieGenres.cs" />
     <Compile Include="Migrations\201901171456253_RenameGenresToMovieGenres.Designer.cs">
@@ -323,6 +323,14 @@
     <Compile Include="Migrations\201908251807159_DeleteAndSeedNewUsers.cs" />
     <Compile Include="Migrations\201908251807159_DeleteAndSeedNewUsers.Designer.cs">
       <DependentUpon>201908251807159_DeleteAndSeedNewUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031123151_SetWillCascadeOnDeleteToTrueForMoviesTableInRentalsRelationship.cs" />
+    <Compile Include="Migrations\201909031123151_SetWillCascadeOnDeleteToTrueForMoviesTableInRentalsRelationship.Designer.cs">
+      <DependentUpon>201909031123151_SetWillCascadeOnDeleteToTrueForMoviesTableInRentalsRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.cs" />
+    <Compile Include="Migrations\201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.Designer.cs">
+      <DependentUpon>201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -782,8 +790,8 @@
     <EmbeddedResource Include="Migrations\201901131815211_AddGames.resx">
       <DependentUpon>201901131815211_AddGames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901132130226_AddDomainModelIdsToRentalTable.resx">
-      <DependentUpon>201901132130226_AddDomainModelIdsToRentalTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901132130226_AddNavigationPropertiesToRentalsTable.resx">
+      <DependentUpon>201901132130226_AddNavigationPropertiesToRentalsTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901171456253_RenameGenresToMovieGenres.resx">
       <DependentUpon>201901171456253_RenameGenresToMovieGenres.cs</DependentUpon>
@@ -826,6 +834,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908251807159_DeleteAndSeedNewUsers.resx">
       <DependentUpon>201908251807159_DeleteAndSeedNewUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031123151_SetWillCascadeOnDeleteToTrueForMoviesTableInRentalsRelationship.resx">
+      <DependentUpon>201909031123151_SetWillCascadeOnDeleteToTrueForMoviesTableInRentalsRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.resx">
+      <DependentUpon>201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -30,6 +30,7 @@ namespace Video_Rental_Shop.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Rentals", "Game_Id", "dbo.Games");
+            DropForeignKey("dbo.Rentals", "GameId", "dbo.Games");
             DropForeignKey("dbo.Games", "GenreId", "dbo.Genres");
             DropIndex("dbo.Rentals", new[] { "Game_Id" });
             DropIndex("dbo.Games", new[] { "GenreId" });

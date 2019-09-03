@@ -277,7 +277,6 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddNumberAvailableToMoviesTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddRentals.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGames.resources
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddDomainModelIdsToRentalTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.RenameGenresToMovieGenres.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGameGenres.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddGamePlatforms.resources
@@ -448,3 +447,6 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video R
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.SetWillCascadeOnDeleteToTrueForCustomersTable.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.DeleteIsManagerAndAddUserRoleToApplicationUser.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.DeleteAndSeedNewUsers.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.SetWillCascadeOnDeleteToTrueForMoviesTableInRentalsRelationship.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\Video-Rental-Shop\Video Rental Shop\obj\Debug\Video_Rental_Shop.Migrations.AddNavigationPropertiesToRentalsTable.resources

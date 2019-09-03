@@ -33,7 +33,7 @@ namespace Video_Rental_Shop.Models
         public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Game> Games { get; set; }
-        public  DbSet<GamePlatform> GamePlatforms { get; set; }
+        public DbSet<GamePlatform> GamePlatforms { get; set; }
 
         public ApplicationDbContext()
             : base("name=DefaultConnection", throwIfV1Schema: false)
@@ -49,14 +49,22 @@ namespace Video_Rental_Shop.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Membership>()
-                        .Property(m => m.Id)
-                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             modelBuilder.Entity<Customer>()
                         .HasRequired(c => c.Membership)
                         .WithRequiredPrincipal(m => m.Customer)
                         .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Movie>()
+                        .HasMany(m => m.Rentals)
+                        .WithOptional(r => r.Movie)
+                        .HasForeignKey(r => r.MovieId)
+                        .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Game>()
+                       .HasMany(g => g.Rentals)
+                       .WithOptional(r => r.Game)
+                       .HasForeignKey(r => r.GameId)
+                       .WillCascadeOnDelete(true);
         }
     }
 }
