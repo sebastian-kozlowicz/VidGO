@@ -64,7 +64,7 @@
                                 }
                                 else
                                 {
-                                    <td style="width:5%"><button class="btn btn-success btn-xs">Return</button> </td>
+                                    <td style="width:5%"><button class="btn btn-success btn-xs" disabled="disabled">Return</button> </td>
                                 }
                             }
                             @if (row.MovieId != null)
@@ -75,7 +75,7 @@
                                 <td>@row.Movie.Name</td>
                                 <td>Movie</td>
                                 <td>@row.Movie.MovieGenre.Name</td>
-                                <td>@row.Movie.Price$</td>
+                                <td>$@row.Movie.Price</td>
                             }
 
                             @if (row.GameId != null)
@@ -86,7 +86,7 @@
                                 <td>@row.Game.Name</td>
                                 <td>Game</td>
                                 <td>@row.Game.GameGenre.Name</td>
-                                <td>@row.Game.Price$</td>
+                                <td>$@row.Game.Price</td>
                             }
 
                             <td>@row.DateRented.ToShortDateString()</td>

@@ -35,7 +35,6 @@
                             <th class="text-center" style="width:5%">Options</th>
                         }
                         <th class="text-center" style="width:5%">#</th>
-                        <th>Customer</th>
                         <th>Product Title</th>
                         <th>Type</th>
                         <th>Genre</th>
@@ -64,29 +63,27 @@
                                 }
                                 else
                                 {
-                                    <td style="width:5%"><button class="btn btn-success btn-xs">Return</button> </td>
+                                    <td style="width:5%"><button class="btn btn-success btn-xs" disabled="disabled">Return</button> </td>
                                 }
                             }
                             @if (row.MovieId != null)
                             {
                                 <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = row.Movie.Id }, new { @class = "btn btn-info btn-xs" })</td>
                                 <td class="text-center">@(count++)</td>
-                                <td>@row.Customer.Name @row.Customer.Surname</td>
                                 <td>@row.Movie.Name</td>
                                 <td>Movie</td>
                                 <td>@row.Movie.MovieGenre.Name</td>
-                                <td>@row.Movie.Price$</td>
+                                <td>$@row.Movie.Price</td>
                             }
 
                             @if (row.GameId != null)
                             {
                                 <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = row.Game.Id }, new { @class = "btn btn-info btn-xs" })</td>
                                 <td class="text-center">@(count++)</td>
-                                <td>@row.Customer.Name @row.Customer.Surname</td>
                                 <td>@row.Game.Name</td>
                                 <td>Game</td>
                                 <td>@row.Game.GameGenre.Name</td>
-                                <td>@row.Game.Price$</td>
+                                <td>$@row.Game.Price</td>
                             }
 
                             <td>@row.DateRented.ToShortDateString()</td>
