@@ -69,7 +69,7 @@
                             }
                             @if (row.MovieId != null)
                             {
-                                <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = row.Movie.Id }, new { @class = "btn btn-info btn-xs" })</td>
+                                <td style="width:5%">@Html.ActionLink("Details", "Details", "Movies", new { id = row.Movie.Id }, new { @class = "btn btn-info btn-xs button-centered" })</td>
                                 <td class="text-center">@(count++)</td>
                                 <td>@row.Customer.Name @row.Customer.Surname</td>
                                 <td>@row.Movie.Name</td>
@@ -80,7 +80,7 @@
 
                             @if (row.GameId != null)
                             {
-                                <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = row.Game.Id }, new { @class = "btn btn-info btn-xs" })</td>
+                                <td style="width:5%">@Html.ActionLink("Details", "Details", "Games", new { id = row.Game.Id }, new { @class = "btn btn-info btn-xs button-centered" })</td>
                                 <td class="text-center">@(count++)</td>
                                 <td>@row.Customer.Name @row.Customer.Surname</td>
                                 <td>@row.Game.Name</td>

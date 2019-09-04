@@ -104,6 +104,11 @@ body {
         margin-left: 5px;
     }
 
+.button-centered {
+    display: table;
+    margin: 0 auto;
+}
+
 .layout-footer {
     color: #fff;
 }

@@ -32,8 +32,8 @@
                     @for (int i = 0; i < Model.Count(); i++)
                     {
                         <tr>
-                            <td>@Html.ActionLink("Details", "Details", "Customers", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs", @style = "margin:0 auto;" })</td>
-                            <td>@Html.ActionLink("History", "RentedProducts", "Rentals", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-success btn-xs" })</td>
+                            <td>@Html.ActionLink("Details", "Details", "Customers", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-info btn-xs button-centered" })</td>
+                            <td>@Html.ActionLink("History", "RentedProducts", "Rentals", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-success btn-xs button-centered" })</td>
                             <td class="text-center">@(i + 1)</td>
                             <td>@Model.ElementAt(i).Name @Model.ElementAt(i).Surname</td>
                             <td>@Model.ElementAt(i).Membership.MembershipType.Name</td>
