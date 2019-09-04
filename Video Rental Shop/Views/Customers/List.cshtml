@@ -8,14 +8,14 @@
 <div class="main-content-container">
 
     <div class="row">
-        <div class="col-sm-1 col-md-1 col-lg-1">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <a class="add-new-entity-button" href='@Url.Action("New", "Customers")'>
                 <img src='@Url.Content("~/Content/Custom/Shared/img/new-customer.png")' />
                 <span class="tooltip-text">Add new customer</span>
             </a>
         </div>
 
-        <div class="col-xs-10 col-sm-10 col-md-10">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-1">
             @if (Model.Any())
             {
                 <h2 class="table-title">Customers</h2>

@@ -169,7 +169,7 @@ namespace Video_Rental_Shop.Controllers
 
             _context.SaveChanges();
 
-            return null;
+            return Json(new { result = "Success", balance = customer.Balance });
         }
     }
 }
