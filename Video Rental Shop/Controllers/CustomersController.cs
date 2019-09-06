@@ -60,7 +60,7 @@ namespace Video_Rental_Shop.Controllers
         [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
         public ActionResult Edit(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.Membership).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
