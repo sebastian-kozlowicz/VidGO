@@ -1,4 +1,5 @@
 ﻿@model Video_Rental_Shop.ViewModels.CustomerFormViewModel
+@using Video_Rental_Shop.Models;
 
 @Styles.Render("~/Content/Custom/Shared/css/entity-form.css")
 @Styles.Render("~/Content/jquery-ui")
@@ -34,13 +35,13 @@
             @Html.ValidationMessageFor(m => m.Customer.Birthdate, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
+            @Html.LabelFor(m => m.Customer.Membership.MembershipTypeId, "Membership Type")
+            @Html.DropDownListFor(m => m.Customer.Membership.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
+        </div>
+        <div class="form-group">
             @Html.LabelFor(m => m.Customer.Balance, "Balance")
             @Html.TextBoxFor(m => m.Customer.Balance, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Customer.Balance, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Customer.Membership.MembershipTypeId, "Membership Type")
-            @Html.DropDownListFor(m => m.Customer.Membership.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
         </div>
         @Html.HiddenFor(m => m.Customer.Id)
         @Html.AntiForgeryToken()
@@ -78,6 +79,75 @@
                     return ok;
                 });
         });
+
+         $(document).ready(function () {
+            @if (Model.Customer.Id != 0)
+            {
+                @:var customerBalance = $('#Customer_Balance').val();
+                var membershipTypeId = Model.MembershipTypes.Where(m => m.Id == Model.Customer.Membership.MembershipTypeId).Select(m => m.Id).FirstOrDefault();
+                <text>
+                    $('#Customer_Membership_MembershipTypeId').on('change', function () {
+                        if (this.value == @MembershipType.PayAsYouGo) {
+                            if (this.value < @membershipTypeId) {
+                                bootbox.alert("You can only extend customer's membership license");
+                                this.value = @membershipTypeId;
+                            }
+                            else if (@membershipTypeId == @MembershipType.PayAsYouGo)
+                                $('#Customer_Balance').val(customerBalance);
+                            else
+                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.PayAsYouGo).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
+                        }
+
+                        if (this.value == @MembershipType.Monthly) {
+                            if (this.value < @membershipTypeId) {
+                                bootbox.alert("You can only extend customer's membership license");
+                                this.value = @membershipTypeId;
+                            }
+                            else if (@membershipTypeId == @MembershipType.Monthly)
+                                $('#Customer_Balance').val(customerBalance);
+                            else
+                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.Monthly).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
+                        }
+
+                        if (this.value == @MembershipType.Quarterly) {
+                            if (this.value < @membershipTypeId) {
+                                bootbox.alert("You can only extend customer's membership license");
+                                this.value = @membershipTypeId;
+                            }
+                            else if (@membershipTypeId == @MembershipType.Quarterly)
+                                $('#Customer_Balance').val(customerBalance);
+
+                            else
+                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.Quarterly).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
+                        }
+
+                        if (this.value == @MembershipType.Annual) {
+                            if (this.value < @membershipTypeId) {
+                                bootbox.alert("You can only extend customer's membership license");
+                                this.value = @membershipTypeId;
+                            }
+                            else if (@membershipTypeId == @MembershipType.Annual)
+                                $('#Customer_Balance').val(customerBalance);
+                            else
+                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.Annual).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
+                        }
+                });
+                </text>
+            }
+            else
+            {
+                <text>
+                    $('#Customer_Membership_MembershipTypeId').on('change', function () {
+                    if (this.value == @MembershipType.Monthly)
+                        $('#Customer_Balance').val(@Model.MembershipTypes.Where(m => m.Id == MembershipType.Monthly).Select(m => m.SingUpFee).FirstOrDefault());
+                    else if (this.value == @MembershipType.Quarterly)
+                        $('#Customer_Balance').val(@Model.MembershipTypes.Where(m => m.Id == MembershipType.Quarterly).Select(m => m.SingUpFee).FirstOrDefault());
+                    else if (this.value == @MembershipType.Annual)
+                        $('#Customer_Balance').val(@Model.MembershipTypes.Where(m => m.Id == MembershipType.Annual).Select(m => m.SingUpFee).FirstOrDefault());
+                });
+                </text>
+                }
+            });
 
     </script>
 }
