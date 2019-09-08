@@ -28,5 +28,14 @@ namespace Video_Rental_Shop.Controllers
 
             return View(membershipTypes);
         }
+
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
+        [Route("MembershipTypes/GetMembershipTypeSignUpFee/{membershipTypeId}")]
+        public ActionResult GetMembershipTypeSignUpFee(int membershipTypeId)
+        {
+            var signUpFee = _context.MembershipTypes.Where(m => m.Id == membershipTypeId).Select(m => m.SignUpFee).FirstOrDefault();
+
+            return Json(new {result = "Success", signUpFee });
+            }
     }
 }

@@ -80,57 +80,42 @@
                 });
         });
 
+        function setCustomerBalance(selectedMembershipTypeValue, customerBalance = 0, customerMembershipTypeId) {
+
+            if (selectedMembershipTypeValue < customerMembershipTypeId) {
+                bootbox.alert("You can only extend customer's membership license");
+                $('#Customer_Membership_MembershipTypeId').val(customerMembershipTypeId);
+            }
+            else if (selectedMembershipTypeValue != customerMembershipTypeId || customerMembershipTypeId == 0) {
+                $.post("/MembershipTypes/GetMembershipTypeSignUpFee/" + selectedMembershipTypeValue, function (response) {
+                    if (response.result == 'Success') {
+                        $('#Customer_Balance').val((response.signUpFee + parseFloat(customerBalance)).toFixed(2));
+                    }
+                });
+                return;
+            }
+            $('#Customer_Balance').val(customerBalance);
+        }
+
          $(document).ready(function () {
             @if (Model.Customer.Id != 0)
             {
                 @:var customerBalance = $('#Customer_Balance').val();
                 var membershipTypeId = Model.MembershipTypes.Where(m => m.Id == Model.Customer.Membership.MembershipTypeId).Select(m => m.Id).FirstOrDefault();
+
                 <text>
                     $('#Customer_Membership_MembershipTypeId').on('change', function () {
-                        if (this.value == @MembershipType.PayAsYouGo) {
-                            if (this.value < @membershipTypeId) {
-                                bootbox.alert("You can only extend customer's membership license");
-                                this.value = @membershipTypeId;
-                            }
-                            else if (@membershipTypeId == @MembershipType.PayAsYouGo)
-                                $('#Customer_Balance').val(customerBalance);
-                            else
-                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.PayAsYouGo).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
-                        }
+                        if (this.value == @MembershipType.PayAsYouGo)
+                            setCustomerBalance(@MembershipType.PayAsYouGo, customerBalance, @membershipTypeId);
 
-                        if (this.value == @MembershipType.Monthly) {
-                            if (this.value < @membershipTypeId) {
-                                bootbox.alert("You can only extend customer's membership license");
-                                this.value = @membershipTypeId;
-                            }
-                            else if (@membershipTypeId == @MembershipType.Monthly)
-                                $('#Customer_Balance').val(customerBalance);
-                            else
-                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.Monthly).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
-                        }
+                        else if (this.value == @MembershipType.Monthly)
+                            setCustomerBalance(@MembershipType.Monthly, customerBalance, @membershipTypeId);
 
-                        if (this.value == @MembershipType.Quarterly) {
-                            if (this.value < @membershipTypeId) {
-                                bootbox.alert("You can only extend customer's membership license");
-                                this.value = @membershipTypeId;
-                            }
-                            else if (@membershipTypeId == @MembershipType.Quarterly)
-                                $('#Customer_Balance').val(customerBalance);
+                         else if (this.value == @MembershipType.Quarterly)
+                            setCustomerBalance(@MembershipType.Quarterly, customerBalance, @membershipTypeId);
 
-                            else
-                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.Quarterly).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
-                        }
-
-                        if (this.value == @MembershipType.Annual) {
-                            if (this.value < @membershipTypeId) {
-                                bootbox.alert("You can only extend customer's membership license");
-                                this.value = @membershipTypeId;
-                            }
-                            else if (@membershipTypeId == @MembershipType.Annual)
-                                $('#Customer_Balance').val(customerBalance);
-                            else
-                                $('#Customer_Balance').val((@Model.MembershipTypes.Where(m => m.Id == MembershipType.Annual).Select(m => m.SingUpFee).FirstOrDefault() + Number(customerBalance)).toFixed(2));
-                        }
+                         else if (this.value == @MembershipType.Annual)
+                            setCustomerBalance(@MembershipType.Annual, customerBalance, @membershipTypeId);
                 });
                 </text>
             }
@@ -138,12 +123,17 @@
             {
                 <text>
                     $('#Customer_Membership_MembershipTypeId').on('change', function () {
-                    if (this.value == @MembershipType.Monthly)
-                        $('#Customer_Balance').val(@Model.MembershipTypes.Where(m => m.Id == MembershipType.Monthly).Select(m => m.SingUpFee).FirstOrDefault());
-                    else if (this.value == @MembershipType.Quarterly)
-                        $('#Customer_Balance').val(@Model.MembershipTypes.Where(m => m.Id == MembershipType.Quarterly).Select(m => m.SingUpFee).FirstOrDefault());
-                    else if (this.value == @MembershipType.Annual)
-                        $('#Customer_Balance').val(@Model.MembershipTypes.Where(m => m.Id == MembershipType.Annual).Select(m => m.SingUpFee).FirstOrDefault());
+                        if (this.value == @MembershipType.PayAsYouGo)
+                            setCustomerBalance(@MembershipType.PayAsYouGo);
+
+                        else if (this.value == @MembershipType.Monthly)
+                            setCustomerBalance(@MembershipType.Monthly);
+
+                         else if (this.value == @MembershipType.Quarterly)
+                            setCustomerBalance(@MembershipType.Quarterly);
+
+                         else if (this.value == @MembershipType.Annual)
+                            setCustomerBalance(@MembershipType.Annual);
                 });
                 </text>
                 }

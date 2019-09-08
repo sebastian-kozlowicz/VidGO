@@ -332,6 +332,10 @@
     <Compile Include="Migrations\201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.Designer.cs">
       <DependentUpon>201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909091507084_CorrectSpellingForSignUpFeeColumnInMembershipTypesTable.cs" />
+    <Compile Include="Migrations\201909091507084_CorrectSpellingForSignUpFeeColumnInMembershipTypesTable.Designer.cs">
+      <DependentUpon>201909091507084_CorrectSpellingForSignUpFeeColumnInMembershipTypesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -835,6 +839,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.resx">
       <DependentUpon>201909031127383_SetWillCascadeOnDeleteToTrueForGamesTableInRentalsRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909091507084_CorrectSpellingForSignUpFeeColumnInMembershipTypesTable.resx">
+      <DependentUpon>201909091507084_CorrectSpellingForSignUpFeeColumnInMembershipTypesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
