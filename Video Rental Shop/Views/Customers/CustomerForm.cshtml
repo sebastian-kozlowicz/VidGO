@@ -80,6 +80,14 @@
                 });
         });
 
+
+         $(document).ready(function () {
+            @if (!this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) && Model.Customer.Id != 0)
+            {
+                @:$('#Customer_Balance').prop('disabled', true).css({ 'background-color': '#fff', 'cursor': 'not-allowed' });
+            }
+        });
+
         function setCustomerBalance(selectedMembershipTypeValue, customerBalance = 0, customerMembershipTypeId) {
 
             if (selectedMembershipTypeValue < customerMembershipTypeId) {
