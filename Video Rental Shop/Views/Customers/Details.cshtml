@@ -11,40 +11,41 @@
 <div class="main-content-container">
     <h2 class="table-title">Customer's details</h2>
 
-    <div class="sub-content-container">
-        @using (Html.BeginForm("Edit", "Customers"))
-        {
-            <div class="form-group">
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", disabled = "disabled" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Surname)
-                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", disabled = "disabled" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, "e-mail")
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", disabled = "disabled " })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Birthdate)
-                @Html.TextBoxFor(m => m.Birthdate, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Balance, "Balance")
-                @Html.TextBoxFor(m => m.Balance, new { @class = "form-control", disabled = "disabled", Value = String.Format("${0}", Model.Balance) })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Membership.MembershipTypeId, "Membership Type")
-                @Html.TextBoxFor(m => m.Membership.MembershipType.Name, new { @class = "form-control", disabled = "disabled" })
-            </div>
-            @Html.HiddenFor(m => m.Id)
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Edit", "Customers"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Surname)
+            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, "e-mail")
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", disabled = "disabled " })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Birthdate)
+            @Html.TextBoxFor(m => m.Birthdate, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Membership.MembershipTypeId, "Membership Type")
+            @Html.TextBoxFor(m => m.Membership.MembershipType.Name, new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Balance, "Balance")
+            @Html.TextBoxFor(m => m.Balance, new { @class = "form-control", disabled = "disabled", Value = String.Format("${0}", Model.Balance) })
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        @Html.AntiForgeryToken()
 
-            if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) || this.User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
-            {
+        if (this.User.IsInRole(RoleName.CanDoAllManipulationsOnEntities) || this.User.IsInRole(RoleName.CanDoManipulationsOnEntitiesExceptDeletion))
+        {
+            <div id="details-view-buttons">
                 <button type="submit">EDIT</button>
-            }
+                <button type="button" onclick="location.href='@Url.Action("TopUpBalance", "Customers", new { id = Model.Id})'">ADD CREDIT</button>
+            </div>
         }
-    </div>
+    }
 </div>

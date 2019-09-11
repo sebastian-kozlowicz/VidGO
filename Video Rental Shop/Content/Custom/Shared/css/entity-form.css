@@ -23,6 +23,14 @@
     cursor: default;
 }
 
+#details-view-buttons button {
+    display: inline-block;
+    width: 130px;
+    height: 45px;
+    padding: 1px;
+    margin-left: 13px;
+}
+
 button {
     display: block;
     margin-top: 40px;

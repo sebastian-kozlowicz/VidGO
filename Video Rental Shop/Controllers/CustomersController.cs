@@ -131,5 +131,28 @@ namespace Video_Rental_Shop.Controllers
 
             return RedirectToAction("Index", "Customers");
         }
+
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
+        public ActionResult TopUpBalance(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            return View("TopUpBalance", customer);
+        }
+
+        [Authorize(Roles = RoleName.CanDoAllManipulationsOnEntities + "," + RoleName.CanDoManipulationsOnEntitiesExceptDeletion)]
+        [Route("Customers/TopUpBalance/{customerId}/{depositAmount:decimal}")]
+        public ActionResult TopUpBalance(int customerId, decimal depositAmount)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == customerId);
+            customer.Balance += depositAmount;
+
+            _context.SaveChanges();
+
+            return Json(new { result = "Success", balance = customer.Balance });
+        }
     }
 }

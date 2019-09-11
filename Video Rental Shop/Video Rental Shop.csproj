@@ -752,6 +752,7 @@
     <Content Include="Views\Games\ListWithoutDeletions.cshtml" />
     <Content Include="Views\Customers\ListWithoutDeletions.cshtml" />
     <Content Include="Views\Customers\ReadOnlyList.cshtml" />
+    <Content Include="Views\Customers\TopUpBalance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -178,6 +178,7 @@ This app is created based on Mosh Hamedani's [The Complete ASP.NET MVC 5 Course]
 * Introduce 2 types of user roles and restrict user operations based on them
 * Add calendar for date type input fiels in forms
 * Populate balance field in customer form based on selected membership
+* Create view for customer's balance top up
 
 ## Screenshots
 <kbd><img src="readme-img/login-form.png"/></kbd> <br/><br/> 

@@ -1,0 +1,84 @@
+﻿@model Video_Rental_Shop.Models.Customer
+@Styles.Render("~/Content/Custom/Shared/css/entity-form.css")
+
+@{
+    ViewBag.Title = "Add Credit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content-container">
+
+    <h2 class="table-title">Add Credit</h2>
+
+    <form id="add-credit-form" action="javascript:void(0);">
+        <div class="form-group">
+            <label>Customer</label>
+            <input type="text" class="form-control" style="background-color:#fff; cursor:not-allowed" disabled="disabled" value="@Model.Name @Model.Surname">
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Balance)
+            @Html.TextBoxFor(m => m.Balance, new { @class = "form-control", @Value = "" })
+        </div>
+
+        <button>ADD</button>
+    </form>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $('#add-credit-form').validate({
+            rules: {
+                Balance: {
+                    required: true,
+                    number: true,
+                    min:1
+                }
+            },
+            messages: {
+                Balance: {
+                    required: "The Balance field is required",
+                    number: "Please enter a valid number",
+                    min: "Balance must be greater than or equal to 1"
+                }
+            }
+        });
+
+        $(document).ready(function FormValidate() {
+            $('#add-credit-form').on('submit', function () {
+                if (!$('#add-credit-form').valid()) {
+                    $('#Balance-error').addClass('text-danger').css('font-weight', 'normal');
+                    $('#Balance').addClass('input-validation-error');
+                }
+            });
+
+            $('#Balance').on('change', function () {
+                if ($('#add-credit-form').valid()) {
+                    $('#Balance').removeClass('input-validation-error');
+                }
+                else {
+                    $('#Balance-error').addClass('text-danger').css('font-weight', 'normal');
+                    $('#Balance').addClass('input-validation-error');
+                }
+            });
+        });
+
+        $('#add-credit-form').submit(function () {
+
+            if ($(this).valid()) {
+                $.ajax({
+                    url: "/Customers/TopUpBalance/" + @Model.Id + "/" + $('#Balance').val() + "/",
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function () {
+                        toastr.success("nice");
+                        window.location = "/Customers/Details/" + @Model.Id;
+                    }
+                });
+            }
+        });
+    </script>
+}
