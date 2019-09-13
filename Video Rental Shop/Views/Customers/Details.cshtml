@@ -34,6 +34,14 @@
             @Html.TextBoxFor(m => m.Membership.MembershipType.Name, new { @class = "form-control", disabled = "disabled" })
         </div>
         <div class="form-group">
+            @Html.LabelFor(m => m.Membership.AssignDate, "Assign Date")
+            @Html.TextBoxFor(m => m.Membership.AssignDate, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Membership.ExpiryDate, "Expiry Date")
+            @Html.TextBoxFor(m => m.Membership.ExpiryDate, new { @class = "form-control", disabled = "disabled", Value = (Model.Membership.MembershipTypeId == MembershipType.PayAsYouGo ? "non expiration membership" : Model.Membership.ExpiryDate.Value.ToString("dd/MM/yyyy")) })
+        </div>
+        <div class="form-group">
             @Html.LabelFor(m => m.Balance, "Balance")
             @Html.TextBoxFor(m => m.Balance, new { @class = "form-control", disabled = "disabled", Value = String.Format("${0}", Model.Balance) })
         </div>
