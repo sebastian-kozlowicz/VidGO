@@ -231,7 +231,7 @@
                 bootbox.confirm("Do you want to deposit " + depositAmount + "$ ?", function (result) {
                     if (result) {
                         $.ajax({
-                            url: "/Rentals/TopUpBalance/" + button.attr("data-customer-id") + "/" + depositAmount + "/",
+                            url: "/Customers/TopUpBalance/" + button.attr("data-customer-id") + "/" + depositAmount + "/",
                             dataType: 'json',
                             type: 'POST',
                             success: function (response) {
