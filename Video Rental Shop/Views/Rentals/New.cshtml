@@ -66,6 +66,7 @@
                         <th>Genre</th>
                         <th>Release Date</th>
                         <th>Number Available</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +87,7 @@
                                 <td>@Model.Movies.ElementAt(i).MovieGenre.Name</td>
                                 <td>@Model.Movies.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
                                 <td>@Model.Movies.ElementAt(i).NumberAvailable</td>
+                                <td>$@Model.Movies.ElementAt(i).Price</td>
                             </tr>
                         }
                     }
@@ -109,6 +111,7 @@
                     <th>Platform</th>
                     <th>Release Date</th>
                     <th>Number Available</th>
+                    <th>Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -129,6 +132,7 @@
                             <td>@Model.Games.ElementAt(i).GamePlatform.Name</td>
                             <td>@Model.Games.ElementAt(i).ReleaseDate.Value.ToShortDateString()</td>
                             <td>@Model.Games.ElementAt(i).NumberAvailable</td>
+                            <td>$@Model.Games.ElementAt(i).Price</td>
                         </tr>
                     }
                 }
