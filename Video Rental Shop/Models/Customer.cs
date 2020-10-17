@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using FluentValidation.Attributes;
-using System.Web.Mvc;
 using Video_Rental_Shop.Models.Validators;
 
 

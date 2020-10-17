@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using FluentValidation.Attributes;
 using Video_Rental_Shop.Models.Validators;
-using System.Linq;
-using System.Web;
 
 namespace Video_Rental_Shop.Models
 {
@@ -23,15 +21,15 @@ namespace Video_Rental_Shop.Models
         public IList<Rental> Rentals { get; set; }
 
         /// <summary>
-        /// Calculates new available number of games after editing existing one
+        ///     Calculates new available number of games after editing existing one
         /// </summary>
         /// <param name="gameInDb">Editing game in database</param>
         /// <param name="game">Edited copy of game from database</param>
         /// <returns></returns>
         public void SetNewNumberAvailable(Game gameInDb, Game game)
         {
-            var NumberInStockDifference = game.NumberInStock - gameInDb.NumberInStock;
-            gameInDb.NumberAvailable = game.NumberAvailable + NumberInStockDifference;
+            var numberInStockDifference = game.NumberInStock - gameInDb.NumberInStock;
+            gameInDb.NumberAvailable = game.NumberAvailable + numberInStockDifference;
         }
     }
 }

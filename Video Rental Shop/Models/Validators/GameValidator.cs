@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Video_Rental_Shop.Models.Validators
 {
@@ -10,12 +7,12 @@ namespace Video_Rental_Shop.Models.Validators
     {
         public GameValidator()
         {
-            RuleFor(g=> g.Name).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(g => g.Name).Cascade(CascadeMode.StopOnFirstFailure)
                .NotEmpty().WithMessage("The Game Title field is required");
 
             RuleFor(g => g.ReleaseDate).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Release Date field is required")
-                .LessThan(c => DateTime.Now).WithMessage($"Release Date must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}");
+                .LessThan(c => DateTime.Now).WithMessage($"Release Date must be less than {DateTime.Now.AddDays(1):dd-MM-yyyy}");
 
             RuleFor(m => m.NumberInStock).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Number In Stock field is required")

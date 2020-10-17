@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using FluentValidation.Attributes;
 using Video_Rental_Shop.Models.Validators;
-using System.Linq;
-using System.Web;
 
 namespace Video_Rental_Shop.Models
 {
@@ -27,8 +25,8 @@ namespace Video_Rental_Shop.Models
         /// <param name="movie">Edited copy of movie from database</param>
         public void SetNewNumberAvailable(Movie movieInDb, Movie movie)
         {
-           var NumberInStockDifference = movie.NumberInStock - movieInDb.NumberInStock;
-           movieInDb.NumberAvailable = movie.NumberAvailable + NumberInStockDifference;
+           var numberInStockDifference = movie.NumberInStock - movieInDb.NumberInStock;
+           movieInDb.NumberAvailable = movie.NumberAvailable + numberInStockDifference;
         }
     }
 }

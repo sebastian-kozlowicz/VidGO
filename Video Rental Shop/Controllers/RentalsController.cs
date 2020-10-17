@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Video_Rental_Shop.ViewModels;
 using Video_Rental_Shop.Models;
 using System.Data.Entity;
-using System.Net;
 
 namespace Video_Rental_Shop.Controllers
 {

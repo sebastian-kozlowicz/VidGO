@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Video_Rental_Shop.Models.Validators
 {
@@ -15,7 +12,7 @@ namespace Video_Rental_Shop.Models.Validators
 
             RuleFor(m => m.ReleaseDate).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Release Date field is required")
-                .LessThan(m => DateTime.Now).WithMessage($"Release Date must be less than {((DateTime.Now).AddDays(1)).ToString("dd/MM/yyyy")}");
+                .LessThan(m => DateTime.Now).WithMessage($"Release Date must be less than {DateTime.Now.AddDays(1):dd/MM/yyyy}");
 
             RuleFor(m => m.NumberInStock).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("The Number In Stock field is required")

@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Video_Rental_Shop.Models.Validators
 {
@@ -23,7 +20,7 @@ namespace Video_Rental_Shop.Models.Validators
 
             RuleFor(c => c.Birthdate).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("The Birthday field is required")
-                .LessThan(c => DateTime.Now).WithMessage($"Birthdate must be less than {((DateTime.Now).AddDays(1)).ToString("dd-MM-yyyy")}");
+                .LessThan(c => DateTime.Now).WithMessage($"Birthdate must be less than {DateTime.Now.AddDays(1):dd-MM-yyyy}");
 
             RuleFor(c => c.Balance).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("The Balance field is required")
@@ -32,13 +29,11 @@ namespace Video_Rental_Shop.Models.Validators
             RuleFor(c => c).Cascade(CascadeMode.StopOnFirstFailure)
                 .Custom((c, context) =>
                 {
-                    if (c.Membership.MembershipTypeId != MembershipType.PayAsYouGo)
-                    {
-                        DateTime Current = DateTime.Today;
+                    if (c.Membership.MembershipTypeId == MembershipType.PayAsYouGo) 
+                        return;
 
-                        if (c.Birthdate > DateTime.Now.AddYears(-18))
-                            context.AddFailure(new ValidationFailure("Birthdate", "Customer should be at least 18 years old to go on a membership"));
-                    }
+                    if (c.Birthdate > DateTime.Now.AddYears(-18))
+                        context.AddFailure(new ValidationFailure("Birthdate", "Customer should be at least 18 years old to go on a membership"));
                 });
         }
     }

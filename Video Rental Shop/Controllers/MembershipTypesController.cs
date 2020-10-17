@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Video_Rental_Shop.Models;
@@ -19,7 +16,7 @@ namespace Video_Rental_Shop.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
+            _context.Dispose();
         }
 
         public ActionResult Index()
@@ -35,7 +32,7 @@ namespace Video_Rental_Shop.Controllers
         {
             var signUpFee = _context.MembershipTypes.Where(m => m.Id == membershipTypeId).Select(m => m.SignUpFee).FirstOrDefault();
 
-            return Json(new {result = "Success", signUpFee });
-            }
+            return Json(new { result = "Success", signUpFee });
+        }
     }
 }
